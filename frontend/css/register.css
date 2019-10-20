@@ -1,0 +1,14 @@
+﻿section{
+    width:50vw;
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    margin:10vh 0;
+}
+.btn {
+    background-color: #3498db;
+}
+.layui-form-checked span, .layui-form-checked:hover span {
+    background-color: #3498db;
+}
+

@@ -1,0 +1,19 @@
+﻿.header .mallSearch button {
+    background: #3498db;
+}
+
+.header .mallSearch .forms {
+    border:none;
+}
+
+.header .mallSearch input {
+    border: 2px solid #3498db;
+}
+.content .inner-cont2 a.active,
+.content .inner-cont2 a:hover {
+    color: #3498db;
+}
+
+.content{
+    display:inline-block;
+}
