@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Eshop.frontend.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Info.master.cs" Inherits="Eshop.frontend.Info" %>
 
 <!DOCTYPE html>
 
@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="./css/Site1.css">
         -->
     <script type="text/javascript" src="../layui/res/layui/layui.js"></script>
+
+
 
     <style>
         body {
@@ -84,16 +86,74 @@
             display: inline-block;
             width: 220px;
         }
+
+        .container_left {
+            float: left;
+            background-color: white;
+            width: 14vw;
+            height: 100%;
+            margin-left: 154px;
+        }
+
+        .container_right {
+            width: 65vw;
+            background-color: white;
+            float: right;
+            margin-right: 154px;
+            height:100%;
+        }
+
+        section.container {
+            padding: 20px 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            height: 600px;
+
+        }
+
+
+        .footer {
+            clear: both;
+        }
+
+
+
+        /*  网页导航栏区域美化 */
+
+        #aside_nav ul {
+            list-style: none;
+            margin-top: 5vh;
+            padding: 0;
+        }
+        #aside_nav .smenu a {
+            display: block;
+        }
+
+            #aside_nav .smenu a:hover {
+                color: blue;
+            }
+
+        #aside_nav .smenu {
+            margin-top: 15px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height  0.4s;
+        }
+
+        #aside_nav ul li .smenu a {
+            padding: 14px 0;
+            padding-left: 20px;
+        }
+
+        #aside_nav .item:target .smenu {
+            max-height: 10em;
+        }
     </style>
-
-
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-
 </head>
 <body id="list-cont">
     <form action="" class="layui-form" runat="server">
-
         <div class="top">
             <div class="container">
                 <div class="right">
@@ -105,10 +165,8 @@
                 </div>
             </div>
         </div>
-
-
         <header>
-            <a href="#">
+            <a href="index.aspx">
                 <img src="./images/logo.jpg" alt="logo" />
             </a>
             <nav>
@@ -120,19 +178,38 @@
                 </ul>
             </nav>
             <div class="mallSearch">
-                <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input searchBox" placeholder="请输入需要的商品">
+                <input type="text" name="title"  lay-verify="required" autocomplete="off" class="layui-input searchBox" placeholder="请输入需要的商品">
                 <button class="layui-btn" lay-submit lay-filter="formDemo">
                     <i class="layui-icon layui-icon-search"></i>
                 </button>
             </div>
         </header>
+        <section class="container">
+            <div class="container_left">
+                <nav id="aside_nav">
+                    <ul>
+                        <li class="item"  id="personalInfo">
+                            <a href="#personalInfo" class="title">个人中心</a>
+                            <div class="smenu">
+                                <a href="userInfo.aspx">个人信息</a>
+                            </div>
+                        </li>
 
 
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-
-
-
+                        <li class="item"  id="order">
+                            <a href="#order" class="title">订单中心</a>
+                            <div class="smenu">
+                                <a href="#">我的订单</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="container_right">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </section>
         <div class="footer">
             <div class="ng-promise-box">
                 <div class="ng-promise w1200">
@@ -158,6 +235,7 @@
         </div>
     </form>
     <script src="../layui/res/layui/layui.js"></script>
+    <script src="../layui/res/static/js/jquery-3.4.1.min.js"></script>
     <script>
         //Demo
         layui.use('form', function () {

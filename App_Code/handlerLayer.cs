@@ -28,5 +28,26 @@ namespace Eshop.App_Code
             }
             return false;
         }
+
+        public string getUserImg(string id)
+        {
+            string cmd = string.Format("select head from member where LoginName='{0}' ", id);
+            object result = data.queryData(cmd);
+            if (result!=null)
+            {
+                return result.ToString();
+            }
+            return "";
+        }
+
+        public bool setUserImg(string url,string id)
+        {
+            string cmd = string.Format("update  member set head='{0}' where LoginName='{1}' ", url,id);
+            if (data.updateData(cmd))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

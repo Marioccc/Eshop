@@ -10,7 +10,7 @@
 namespace Eshop.frontend {
     
     
-    public partial class Site1 {
+    public partial class Info {
         
         /// <summary>
         /// head 控件。
