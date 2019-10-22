@@ -11,12 +11,14 @@ namespace Eshop.frontend
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
             if (Session["userID"] != null)
             {
                 login.InnerText = "(" + Session["userID"].ToString() + ")个人中心";
                 login.HRef = "userInfo.aspx";
                 register.Visible = false;
             }
+            */
         }
 
         protected void loginOut_Click(object sender, EventArgs e)

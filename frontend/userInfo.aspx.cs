@@ -14,6 +14,7 @@ namespace Eshop.frontend
         handlerLayer handler = new handlerLayer();
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
             if(!IsPostBack)
             {
                 if (Session["userID"] == null) Response.Redirect("index.aspx");
@@ -23,6 +24,7 @@ namespace Eshop.frontend
                     userImg.Src = "./images/userIcon/" + imgUrl;
                 }
             }
+            */
         }
 
         protected void submitBtn_Click(object sender, EventArgs e)
