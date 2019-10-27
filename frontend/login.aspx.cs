@@ -11,9 +11,9 @@ namespace Eshop.frontend
     {
         handlerLayer handler = new handlerLayer();
         
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void submit_Click(object sender, EventArgs e)
