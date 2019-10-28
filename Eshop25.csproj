@@ -71,117 +71,78 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="frontend\css\register.css" />
-    <Content Include="frontend\css\Site1.css" />
-    <Content Include="frontend\images\banner_01.jpg" />
-    <Content Include="frontend\images\login.jpg" />
-    <Content Include="frontend\images\userIcon\default.png" />
-    <Content Include="frontend\index.aspx" />
-    <Content Include="frontend\login.aspx" />
-    <Content Include="frontend\register.aspx" />
-    <Content Include="frontend\userInfo.aspx" />
-    <Content Include="frontend\Validate.aspx" />
+    <Content Include="bootstrap\css\bootstrap-grid.css" />
+    <Content Include="bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="bootstrap\css\bootstrap.css" />
+    <Content Include="bootstrap\css\bootstrap.min.css" />
+    <Content Include="bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="bootstrap\js\bootstrap.js" />
+    <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="Home\css\register.css" />
+    <Content Include="Home\css\Site1.css" />
+    <Content Include="Home\images\banner_01.jpg" />
+    <Content Include="Home\images\login.jpg" />
+    <Content Include="Home\images\userIcon\default.png" />
+    <Content Include="Home\index.aspx" />
+    <Content Include="Home\js\jquery-3.4.1.min.js" />
+    <Content Include="Home\login.aspx" />
+    <Content Include="Home\register.aspx" />
+    <Content Include="Home\userInfo.aspx" />
+    <Content Include="Home\Validate.aspx" />
     <Content Include="Global.asax" />
     <Content Include="index.aspx" />
-    <Content Include="layui\res\layui\css\layui.css" />
-    <Content Include="layui\res\layui\css\layui.mobile.css" />
-    <Content Include="layui\res\layui\css\modules\code.css" />
-    <Content Include="layui\res\layui\css\modules\laydate\default\laydate.css" />
-    <Content Include="layui\res\layui\css\modules\layer\default\icon-ext.png" />
-    <Content Include="layui\res\layui\css\modules\layer\default\icon.png" />
-    <Content Include="layui\res\layui\css\modules\layer\default\layer.css" />
-    <Content Include="layui\res\layui\css\modules\layer\default\loading-0.gif" />
-    <Content Include="layui\res\layui\css\modules\layer\default\loading-1.gif" />
-    <Content Include="layui\res\layui\css\modules\layer\default\loading-2.gif" />
-    <Content Include="layui\res\layui\font\iconfont.svg" />
-    <Content Include="layui\res\layui\layui.all.js" />
-    <Content Include="layui\res\layui\layui.js" />
-    <Content Include="layui\res\layui\lay\modules\carousel.js" />
-    <Content Include="layui\res\layui\lay\modules\code.js" />
-    <Content Include="layui\res\layui\lay\modules\colorpicker.js" />
-    <Content Include="layui\res\layui\lay\modules\element.js" />
-    <Content Include="layui\res\layui\lay\modules\flow.js" />
-    <Content Include="layui\res\layui\lay\modules\form.js" />
-    <Content Include="layui\res\layui\lay\modules\jquery.js" />
-    <Content Include="layui\res\layui\lay\modules\laydate.js" />
-    <Content Include="layui\res\layui\lay\modules\layedit.js" />
-    <Content Include="layui\res\layui\lay\modules\layer.js" />
-    <Content Include="layui\res\layui\lay\modules\laypage.js" />
-    <Content Include="layui\res\layui\lay\modules\laytpl.js" />
-    <Content Include="layui\res\layui\lay\modules\mobile.js" />
-    <Content Include="layui\res\layui\lay\modules\rate.js" />
-    <Content Include="layui\res\layui\lay\modules\slider.js" />
-    <Content Include="layui\res\layui\lay\modules\table.js" />
-    <Content Include="layui\res\layui\lay\modules\tree.js" />
-    <Content Include="layui\res\layui\lay\modules\upload.js" />
-    <Content Include="layui\res\layui\lay\modules\util.js" />
-    <Content Include="layui\res\static\css\main.css" />
-    <Content Include="layui\res\static\img\car-icon.png" />
-    <Content Include="layui\res\static\img\icon_gou.png" />
-    <Content Include="frontend\images\logo.jpg" />
-    <Content Include="layui\res\static\img\off-icon.png" />
-    <Content Include="layui\res\static\img\sort-arrow.png" />
-    <Content Include="layui\res\static\img\s_img1.jpg" />
-    <Content Include="layui\res\static\img\us-icon.png" />
-    <Content Include="layui\res\static\img\us_icon1.png" />
-    <Content Include="layui\res\static\img\us_icon2.png" />
-    <Content Include="layui\res\static\img\us_icon3.png" />
-    <Content Include="layui\res\static\js\jquery-3.4.1.min.js" />
-    <Content Include="layui\res\static\js\util\car.js" />
-    <Content Include="layui\res\static\js\util\mm.js" />
+    <Content Include="Home\images\logo.jpg" />
+    <Content Include="index.html" />
+    <Content Include="userinfo.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\dataLayer.cs" />
     <Compile Include="App_Code\handlerLayer.cs" />
     <Compile Include="App_Code\Member.cs" />
-    <Compile Include="frontend\index.aspx.cs">
+    <Compile Include="Home\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frontend\index.aspx.designer.cs">
+    <Compile Include="Home\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Info.Master.cs">
-      <DependentUpon>Info.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frontend\Info.Master.designer.cs">
-      <DependentUpon>Info.Master</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\login.aspx.cs">
+    <Compile Include="Home\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frontend\login.aspx.designer.cs">
+    <Compile Include="Home\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frontend\register.aspx.cs">
+    <Compile Include="Home\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frontend\register.aspx.designer.cs">
+    <Compile Include="Home\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Site1.Master.cs">
+    <Compile Include="Home\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frontend\Site1.Master.designer.cs">
+    <Compile Include="Home\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
-    <Compile Include="frontend\userInfo.aspx.cs">
+    <Compile Include="Home\userInfo.aspx.cs">
       <DependentUpon>userInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frontend\userInfo.aspx.designer.cs">
+    <Compile Include="Home\userInfo.aspx.designer.cs">
       <DependentUpon>userInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Validate.aspx.cs">
+    <Compile Include="Home\Validate.aspx.cs">
       <DependentUpon>Validate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="frontend\Validate.aspx.designer.cs">
+    <Compile Include="Home\Validate.aspx.designer.cs">
       <DependentUpon>Validate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -197,11 +158,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="frontend\Site1.Master" />
-    <Content Include="layui\res\layui\font\iconfont.eot" />
-    <Content Include="layui\res\layui\font\iconfont.ttf" />
-    <Content Include="layui\res\layui\font\iconfont.woff" />
-    <Content Include="frontend\Info.Master" />
+    <Content Include="Home\Site1.Master" />
+    <Content Include="bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="bootstrap\css\bootstrap.css.map" />
+    <Content Include="bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="bootstrap\js\bootstrap.js.map" />
+    <Content Include="bootstrap\js\bootstrap.min.js.map" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
