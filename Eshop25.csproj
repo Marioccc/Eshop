@@ -81,6 +81,7 @@
     <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="Home\cartList.aspx" />
     <Content Include="Home\css\register.css" />
     <Content Include="Home\css\Site1.css" />
     <Content Include="Home\images\banner_01.jpg" />
@@ -103,6 +104,13 @@
     <Compile Include="App_Code\dataLayer.cs" />
     <Compile Include="App_Code\handlerLayer.cs" />
     <Compile Include="App_Code\Member.cs" />
+    <Compile Include="Home\cartList.aspx.cs">
+      <DependentUpon>cartList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\cartList.aspx.designer.cs">
+      <DependentUpon>cartList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
