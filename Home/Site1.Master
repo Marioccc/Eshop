@@ -62,6 +62,7 @@
             </div>
         </div>
     </nav>
+    <script src="./js/jquery-3.4.1.min.js"></script>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
     <footer>
@@ -72,7 +73,7 @@
             <p>© 2019-2020 Company</p>
         </div>
     </footer>
-    <script src="./js/jquery-3.4.1.min.js"></script>
+    
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 
