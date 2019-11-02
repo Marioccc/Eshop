@@ -82,6 +82,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="Home\cartList.aspx" />
+    <Content Include="Home\check_out.aspx" />
     <Content Include="Home\commodityInfo.aspx" />
     <Content Include="Home\css\Site1.css" />
     <Content Include="Home\images\banner_01.jpg" />
@@ -113,6 +114,13 @@
     </Compile>
     <Compile Include="Home\cartList.aspx.designer.cs">
       <DependentUpon>cartList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\check_out.aspx.cs">
+      <DependentUpon>check_out.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\check_out.aspx.designer.cs">
+      <DependentUpon>check_out.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home\commodityInfo.aspx.cs">
       <DependentUpon>commodityInfo.aspx</DependentUpon>
