@@ -6,20 +6,8 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link href="../layui/res/layui/css/layui.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
     <style>
-        .main {
-            width: 23vw;
-            position: absolute;
-            left: 18%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            background-color:white;
-            padding:10px 20px;
-            border-radius:0.7rem;
-        }
         .container h2{
             font-family:sans-serif;
             text-align:center;
@@ -37,36 +25,42 @@
         .btnColor {
             background-color: #3498db;
         }
-
-        .bkImg{
-            background-image: url("images/login.jpg");
-            height:558px;
-            width:100%;
-            background-repeat:no-repeat;
-            position:relative;
-             clear:both;
-        }
         .logo img{
             float:left;
             margin:20px;
             padding-left:60px;
         }
+
+        section{
+            width:22vw;
+            position:absolute;
+            top:50%;
+            left:70%;
+            transform:translate(-40%,-80%);
+            border:1px solid #bdc3c7;
+            border-radius:10px;
+        }
+        aside{
+            position:absolute;
+            bottom:10vh;
+            left:10vw;
+        }
     </style>
 </head>
 <body>
     <div class="logo">
-        <img class="img-fluid mx-auto d-block" src="images/logo.jpg" alt="logo">
+        <a href="index.aspx">
+            <img class="img-fluid mx-auto d-block" src="images/logo2.jpg" alt="logo" />
+        </a>
     </div>
-    <div class="bkImg">
-        <main id="main" class="site-main main">
-        <section class="section">
+    <aside>
+        <img src="./images/deer.png" alt="deer img" />
+    </aside>
+    <section>
             <div class="container">
                 <div class="row">
                     <div class="container container--mini">
-
-
                         <h2>登录</h2>
-
                         <form runat="server" name="loginform" id="loginform">
                             <div class="form-group">
                                 <label for="user_login">用户名</label>
@@ -90,8 +84,5 @@
                 </div>
             </div>
         </section>
-    </main>
-    </div>
-    
 </body>
 </html>

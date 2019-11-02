@@ -29,7 +29,6 @@ C:\Users\mario\Desktop\Eshop\bin\roslyn\VBCSCompiler.exe
 C:\Users\mario\Desktop\Eshop\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\mario\Desktop\Eshop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\mario\Desktop\Eshop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\mario\Desktop\Eshop\obj\Debug\Eshop25.csproj.CoreCompileInputs.cache
 C:\Users\mario\Desktop\Eshop\obj\Debug\Eshop25.csproj.CopyComplete
 C:\Users\mario\Desktop\Eshop\obj\Debug\Eshop.dll
 C:\Users\mario\Desktop\Eshop\obj\Debug\Eshop.pdb

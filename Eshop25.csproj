@@ -82,10 +82,16 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="Home\cartList.aspx" />
-    <Content Include="Home\css\register.css" />
+    <Content Include="Home\commodityInfo.aspx" />
     <Content Include="Home\css\Site1.css" />
     <Content Include="Home\images\banner_01.jpg" />
+    <Content Include="Home\images\commodity.jpg" />
+    <Content Include="Home\images\deer.png" />
+    <Content Include="Home\images\deer2.jpg" />
     <Content Include="Home\images\login.jpg" />
+    <Content Include="Home\images\logo2.jpg" />
+    <Content Include="Home\images\minus.svg" />
+    <Content Include="Home\images\plus .svg" />
     <Content Include="Home\images\userIcon\default.png" />
     <Content Include="Home\index.aspx" />
     <Content Include="Home\js\jquery-3.4.1.min.js" />
@@ -94,10 +100,7 @@
     <Content Include="Home\userInfo.aspx" />
     <Content Include="Home\Validate.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="index.aspx" />
     <Content Include="Home\images\logo.jpg" />
-    <Content Include="index.html" />
-    <Content Include="userinfo.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +113,13 @@
     </Compile>
     <Compile Include="Home\cartList.aspx.designer.cs">
       <DependentUpon>cartList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\commodityInfo.aspx.cs">
+      <DependentUpon>commodityInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\commodityInfo.aspx.designer.cs">
+      <DependentUpon>commodityInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -155,13 +165,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Eshop
+namespace Eshop.Home
 {
-    public partial class index : System.Web.UI.Page
+    public partial class commodityInfo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

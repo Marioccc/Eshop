@@ -37,13 +37,13 @@
                 <div class="col-3 nav-list">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
-                            role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                            role="tab" aria-controls="v-pills-home" aria-selected="true">基本资料</a>
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false">我的订单</a>
                         <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
-                            role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                            role="tab" aria-controls="v-pills-messages" aria-selected="false">收货地址管理</a>
                         <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
-                            role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                            role="tab" aria-controls="v-pills-settings" aria-selected="false">我的评价</a>
                     </div>
                 </div>
                 <div class="col-9">

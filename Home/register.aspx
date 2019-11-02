@@ -8,28 +8,70 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
     <style>
-        body{
-            background-color:#f9f9f9;
+        .container h2{
+            font-family:sans-serif;
+            text-align:center;
+            padding-top:10px;
         }
-        main{
-            width:65vh;
-            margin:0 auto;
-            background-color:white;
-            padding:10px 20px;
-            border-radius:18px;
+        .val {
+            width: 76%;
+            display: inline-block;
+            margin-right: 0.9rem;
+        }
+        .valText {
+            display: block;
+        }
+
+        .btnColor {
+            background-color: #3498db;
+        }
+        .logo img{
+            float:left;
+            margin:20px;
+            padding-left:60px;
+        }
+
+        section{
+            width:24vw;
+            position:absolute;
+            top:50%;
+            left:70%;
+            transform:translate(-40%,-50%);
+            border:1px solid #bdc3c7;
+            border-radius:10px;
+        }
+        aside{
+            position:absolute;
+            bottom:10vh;
+            left:10vw;
+        }
+        .pwd{
+            margin-right:5.5rem;
+        }
+        #pwdtick{
+            display:inline-block;
+        }
+        .sex{
+            margin-right:3rem;
         }
     </style>
 </head>
 <body>
-        <main id="main" class="site-main main">
-        <section class="section">
+     <div class="logo">
+         <a href="index.aspx">
+             <img class="img-fluid mx-auto d-block" src="images/logo2.jpg" alt="logo" />
+         </a>
+    </div>
+    <aside>
+        <img src="./images/deer.png" alt="deer img" />
+    </aside>
+    <section>
             <div class="container">
                 <div class="row">
                     <div class="container container--mini">
-                        <img class="img-fluid mx-auto d-block" src="images/logo.jpg" alt="">
-
+                        <h2>注册</h2>
                         <form runat="server" name="loginform" id="loginform">
                             <asp:ScriptManager ID="manager" runat="server"></asp:ScriptManager>
                             <div class="form-group">
@@ -37,7 +79,7 @@
                                  <asp:TextBox runat="server"  required   class="form-control" ID="account" />
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group pwd">
                                 <label for="user_pass">密码</label>
                                 <asp:TextBox runat="server"  required   class="form-control" ID="pwd"  TextMode="Password"/> 
                                 <ajaxToolkit:PasswordStrength 
@@ -47,7 +89,7 @@
                                     DisplayPosition="RightSide"
                                     StrengthIndicatorType="Text"
                                     PreferredPasswordLength="8"
-                                    PrefixText="密码强度："
+                                    PrefixText="强度："
                                     TextCssClass="TextIndicator_TextBox1"
                                     MinimumNumericCharacters="2"
                                     MinimumSymbolCharacters="2"
@@ -59,37 +101,21 @@
 
                             <div class="form-group">
                                 <label for="user_login">确认密码</label>
+                                <div class="layui-form-mid layui-word-aux" id="pwdtick"></div>
                                 <input type="password" id="confirmpwd" onchange="valitepwd()" name="password" required  placeholder="" autocomplete="off" class="form-control" />
-                                 <div class="layui-form-mid layui-word-aux" id="pwdtick"></div>
                             </div>
 
                             <div class="form-group">
-                                <label for="user_login">性别</label>
-                                 <asp:RadioButton Text="男" runat="server"  GroupName="sex" ID="male"/>
-                                 <asp:RadioButton Text="女" runat="server"  GroupName="sex" ID="female"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="user_login">出生日期</label>
-                                 <input type="text" class="form-control" id="birthdayDate" runat="server" />
-                            </div>
-
-                            
-                            <div class="form-group">
-                                <label for="user_login">学历</label>
-                                 <asp:DropDownList runat="server" ID="education" lay-verify="required">
-                                    <asp:ListItem Text="" />
-                                    <asp:ListItem Text="大专" />
-                                    <asp:ListItem Text="本科" />
-                                    <asp:ListItem Text="硕士" />
-                                    <asp:ListItem Text="博士" />
-                                    <asp:ListItem Text="博士后" />
-                                </asp:DropDownList>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="user_login">联系地址</label>
-                                 <textarea  placeholder="请输入地址" class="form-control" runat="server" id="address"></textarea>
+                                <label for="user_login" class="sex">性别</label>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="male" name="customRadioInline1" class="custom-control-input">
+                                    <label class="custom-control-label" for="male">男</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                  <input type="radio" id="female" name="customRadioInline1" class="custom-control-input">
+                                  <label class="custom-control-label" for="female">女</label>
+                                </div>
+                                <asp:Label  runat="server"  Visible="false" ID="sex" />
                             </div>
 
                             <div class="form-group">
@@ -98,17 +124,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="user_login">邮政编码</label>
-                                 <asp:TextBox runat="server"  required  class="form-control" ID="zip" />    
-                            </div>
-
-                            <div class="form-group">
-                                <label for="user_login">电子邮箱</label>
+                                <label for="user_login">联系邮箱</label>
                                  <asp:TextBox runat="server"  required  class="form-control" ID="email" />    
                             </div>
 
                             <div class="form-group">
-                                <button type="reset" class="btn btn-primary btn-lg btn-block btnColor" >重置</button>
                                 <asp:Button Text="立即提交" runat="server"  class="btn btn-primary btn-lg btn-block btnColor"  OnClick="submit_Click" ID="submit" />
                             </div>
                         </form>
@@ -117,7 +137,6 @@
                 </div>
             </div>
         </section>
-    </main>
     <script>
         function valitepwd() {
             let firstpwd = document.getElementById("pwd").innerHTML;
