@@ -10,8 +10,8 @@ namespace Eshop.App_Code
         private dataLayer data = new dataLayer();
         public bool register(Member member)
         {
-            string cmd = string.Format("insert into member (Memberlevel,LoginName,LoginPwd,Sex,Birth,Eduation,Phone,Address,Zip,Email,RegDate,LoginTimes) values({0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11})"
-                , member.level, member.account, member.pwd, member.sex, member.birthdate, member.education, member.phone, member.address, member.zip, member.email, member.registerDate, member.loginTimes);
+            string cmd = string.Format("insert into member (Memberlevel,Name,Pwd,Sex,Phone,Email,RegDate,HeadImg) values({0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}')"
+                , member.level, member.account, member.pwd, member.sex, member.phone, member.email, member.registerDate, "default.png");
             if(data.updateData(cmd))
             {
                 return true;
@@ -21,7 +21,7 @@ namespace Eshop.App_Code
 
         public bool login(string name,string pwd)
         {
-            string cmd = string.Format("select * from member where LoginName='{0}' and LoginPwd='{1}'", name, pwd);
+            string cmd = string.Format("select * from member where Name='{0}' and Pwd='{1}'", name, pwd);
             if(data.queryData(cmd)!=null)
             {
                 return true;

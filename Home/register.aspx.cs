@@ -23,6 +23,17 @@ namespace Eshop.frontend
             member.pwd = pwd.Text;
             member.phone = int.Parse(phone.Text);
             member.email = email.Text;
+            member.registerDate = DateTime.Now;
+
+            if (female.Checked==true)
+            {
+                member.sex = "女";
+            }
+            else
+            {
+                member.sex = "男";
+            }
+
             if (handler.register(member))
             {
                 Response.Write("<script>alert('注册成功！')</script>");

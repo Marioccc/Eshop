@@ -107,15 +107,8 @@
 
                             <div class="form-group">
                                 <label for="user_login" class="sex">性别</label>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="male" name="customRadioInline1" class="custom-control-input">
-                                    <label class="custom-control-label" for="male">男</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" id="female" name="customRadioInline1" class="custom-control-input">
-                                  <label class="custom-control-label" for="female">女</label>
-                                </div>
-                                <asp:Label  runat="server"  Visible="false" ID="sex" />
+                                <asp:RadioButton Text="男" runat="server" GroupName="sex" ID="male" />
+                                <asp:RadioButton Text="女" runat="server" GroupName="sex" ID="female" />
                             </div>
 
                             <div class="form-group">
@@ -137,6 +130,7 @@
                 </div>
             </div>
         </section>
+    <script src="./js/jquery-3.4.1.min.js"></script>
     <script>
         function valitepwd() {
             let firstpwd = document.getElementById("pwd").innerHTML;

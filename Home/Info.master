@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Home/Site1.Master" AutoEventWireup="true" CodeBehind="Info.master.cs" Inherits="Eshop.Home.Info" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        body{
+            font-family: "微软雅黑";
+        }
+        .nav-list {
+            background-color: white;
+            height: 67vh;
+            margin: 1.8rem 0;
+            padding: 2rem;
+        }
+        section .content{
+            background-color: white;
+            height: 67vh;
+            margin: 1.8rem 0;
+            overflow:auto;
+            padding:0 2rem;
+        }
+        
+        section .content::-webkit-scrollbar{
+	        width:4px;
+	        height:4px;
+        }
+        section .content::-webkit-scrollbar-track{
+	        background: #f6f6f6;
+	        border-radius:2px;
+        }
+        section .content::-webkit-scrollbar-thumb{
+	        background: #aaa;
+	        border-radius:2px;
+        }
+        section .content::-webkit-scrollbar-thumb:hover{
+	        background: #747474;
+        }
+        section .content::-webkit-scrollbar-corner {
+            background: #f6f6f6;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <section class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-2 nav-list">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link " id="v-pills-home-tab"  href="basicInfo.aspx"
+                            role="tab" aria-controls="v-pills-home" aria-selected="true">
+                            基本资料
+                        </a>
+                        <a class="nav-link" id="v-pills-profile-tab"  href="#"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                            我的订单
+                        </a>
+                        <a class="nav-link" id="v-pills-messages-tab" href="#"
+                            role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                            收货地址
+                        </a>
+                        <a class="nav-link" id="v-pills-settings-tab"  href="evaluation.aspx"
+                            role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                            我的评价
+                        </a>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active content" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                           <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</asp:Content>

@@ -7,27 +7,29 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Eshop.frontend {
-    
-    
-    public partial class userInfo {
-        
+namespace Eshop.Home
+{
+
+
+    public partial class Info
+    {
+
         /// <summary>
-        /// userImg 控件。
+        /// head 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage userImg;
-        
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+
         /// <summary>
-        /// upload 控件。
+        /// ContentPlaceHolder1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile upload;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     }
 }
