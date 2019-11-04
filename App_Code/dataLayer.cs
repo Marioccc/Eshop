@@ -39,6 +39,20 @@ namespace Eshop.App_Code
         }
 
         /// <summary>
+        /// 返回所查询的数据表的数据数量
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public int getDataNum(string cmd)
+        {
+            SqlConnection conn = getConnection();
+            conn.Open();
+            SqlCommand command = new SqlCommand(cmd, conn);
+            int result = command.ExecuteNonQuery();
+            return result;
+        }
+
+        /// <summary>
         /// 获取所要查询的数据集合
         /// </summary>
         /// <param name="cmd"></param>

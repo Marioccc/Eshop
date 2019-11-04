@@ -29,17 +29,6 @@ namespace Eshop.App_Code
             return false;
         }
 
-        public string getUserImg(string id)
-        {
-            string cmd = string.Format("select head from member where LoginName='{0}' ", id);
-            object result = data.queryData(cmd);
-            if (result!=null)
-            {
-                return result.ToString();
-            }
-            return "";
-        }
-
         public bool setUserImg(string url,string id)
         {
             string cmd = string.Format("update  member set head='{0}' where LoginName='{1}' ", url,id);
@@ -48,6 +37,26 @@ namespace Eshop.App_Code
                 return true;
             }
             return false;
+        }
+
+        public int getCartNum(string id)
+        {
+            string cmd = string.Format("select * from cart where MemberId={0} ",id);
+            return data.getDataNum(cmd);
+        }
+
+        public string getUserID(string name)
+        {
+            string cmd = string.Format("select Id from member where Name='{0}' ", name);
+            string result = data.queryData(cmd).ToString();
+            return result;
+        }
+
+        public string getUserImg(string id)
+        {
+            string cmd = string.Format("select HeadImg from member where Name='{0}' ", id);
+            object result = data.queryData(cmd);
+            return result.ToString();
         }
     }
 }

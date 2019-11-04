@@ -9,7 +9,7 @@
     <title>Eshop购物商城</title>
     <link rel="icon" href="./images/logo.ico">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link href="./css/Site1.css?v=2" rel="stylesheet" />
+    <link href="./css/Site1.css?v=3" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -19,17 +19,22 @@
         <div class="container clearPadding">
             <div class="row">
                 <div class="col-md-3 offset-md-9">
+                    <form  runat="server">
                     <ul class="nav float-md-right">
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.aspx">登录</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="register.aspx">注册</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link clearPadding-right" href="cartList.aspx">购物车</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.aspx" runat="server"  id="login">登录</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="register.aspx" runat="server" id="register">注册</a>
+                            </li>
+                            <li class="nav-item vertical-c">
+                                <asp:LinkButton Text="退出"  OnClick="loginOut_Click"  ID="loginOut" runat="server"  />
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link clearPadding-right" href="cartList.aspx" runat="server" id="cart">购物车</a>
+                            </li>
                     </ul>
+                        </form>
                 </div>
             </div>
         </div>

@@ -19,6 +19,10 @@ a {
 .clearPadding {
     padding: 0;
 }
+.vertical-c{
+    line-height:2.5rem;
+}
+
 
 .clearPadding-right {
     padding-right: 0;

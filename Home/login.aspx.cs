@@ -28,7 +28,7 @@ namespace Eshop.frontend
                 if (handler.login(name.Text, pwd.Text))
                 {
                     Session["userID"] = name.Text;
-                    Response.Redirect("basicInfo.aspx");
+                    Response.Redirect("index.aspx");
                 }
                 else
                 {

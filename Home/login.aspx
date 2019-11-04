@@ -12,7 +12,7 @@
             font-family:sans-serif;
             text-align:center;
             padding-top:10px;
-        }
+        }  
         .val {
             width: 76%;
             display: inline-block;

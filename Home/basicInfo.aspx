@@ -24,7 +24,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="info-left">
-        <img src="./images/default.png" alt="user Img" runat="server" id="userImg" style="width: 80px; height: 80px;" />
+        <img src="./images/userIcon/default.png" alt="user Img" runat="server" id="userImg" style="width: 80px; height: 80px;" />
         <a href="#" class="imgChangeBtn">更换头像</a>
         <input type="file" name="name" id="upload" runat="server" hidden />
     </div>
