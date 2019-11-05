@@ -1,0 +1,5 @@
+F:\5\web\eshop\eshop201702845\eshop201702845\bin\eshop201702845.dll
+F:\5\web\eshop\eshop201702845\eshop201702845\bin\eshop201702845.pdb
+F:\5\web\eshop\eshop201702845\eshop201702845\obj\Debug\eshop201702845.dll
+F:\5\web\eshop\eshop201702845\eshop201702845\obj\Debug\eshop201702845.pdb
+F:\5\web\eshop\eshop201702845\eshop201702845\obj\Debug\eshop201702845.csprojResolveAssemblyReference.cache

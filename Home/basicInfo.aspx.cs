@@ -15,7 +15,8 @@ namespace Eshop.Home
         {
             if (!IsPostBack)
             {
-                string imgUrl = handler.getUserImg(Session["userID"].ToString());
+                //string imgUrl = handler.getUserImg(Session["userID"].ToString());
+                string imgUrl = handler.getUserImg("aa");
                 userImg.Src = "./images/userIcon/" + imgUrl;
             }
         }

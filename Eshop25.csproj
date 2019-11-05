@@ -90,6 +90,7 @@
     <Content Include="Home\images\bad.svg" />
     <Content Include="Home\images\banner_01.jpg" />
     <Content Include="Home\images\commodity.jpg" />
+    <Content Include="Home\images\commodityImgs\a01.png" />
     <Content Include="Home\images\deer.png" />
     <Content Include="Home\images\deer2.jpg" />
     <Content Include="Home\images\good.svg" />
@@ -111,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\dataLayer.cs" />
+    <Compile Include="App_Code\Evaluation.cs" />
     <Compile Include="App_Code\handlerLayer.cs" />
     <Compile Include="App_Code\Member.cs" />
     <Compile Include="Home\basicInfo.aspx.cs">

@@ -18,77 +18,26 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3 class="padding-top-bottom">我的评价</h3>
             <div class="list">
-
                 <asp:Repeater ID="evaluationList" runat="server">
-                     <div class="row bottom-line">
+                    <ItemTemplate>
+                        <div class="row bottom-line">
                     <div class="col-md-2">
-                        <img src="./images/good.svg" alt="evaluation img" width="40" id="img" runat="server" />
+                        <img src='<%#Eval("grade") %>'   alt="evaluation img" width="40" id="img" runat="server" />
                     </div>
                     <div class="col-md-5">
-                        <p id="message" runat="server">此用户没有填写评价</p>
-                        <p class="time" id="time" runat="server">[2019-2-11 09:22:12]</p>
+                        <p id="message" runat="server"><%#Eval("message") %></p>
+                        <p class="time" id="time" runat="server">[<%#Eval("time") %>]</p>
                     </div>
                     <div class="col-md-2">
                         <span>商家</span>
-                        <span id="merchant" runat="server">太初网络充值专营店</span>
+                        <span id="merchant" runat="server"><%#Eval("merchant") %></span>
                     </div>
                     <div class="col-md-3">
-                        <span id="commodityInfo" runat="server">四川移动20元 移动话费 自动充值 直充快充 快速到账</span>
-                        <p class="price" id="price" runat="server">20.0元</p>
+                        <span id="commodityInfo" runat="server"><%#Eval("commodityInfo") %></span>
+                        <p class="price" id="price" runat="server"><%#Eval("commodityPrice") %>元</p>
                     </div>
                 </div>
+                    </ItemTemplate>
                 </asp:Repeater>
-               
-                <div class="row bottom-line">
-                    <div class="col-md-2">
-                        <img src="./images/bad.svg" alt="evaluation img" width="40" />
-                    </div>
-                    <div class="col-md-5">
-                        <p>此用户没有填写评价</p>
-                        <p class="time">[2019-2-11 09:22:12]</p>
-                    </div>
-                    <div class="col-md-2">
-                        <span>商家</span>
-                        <span>太初网络充值专营店</span>
-                    </div>
-                    <div class="col-md-3">
-                        <span>四川移动20元 移动话费 自动充值 直充快充 快速到账</span>
-                        <p class="price">20.0元</p>
-                    </div>
-                </div>
-                <div class="row bottom-line">
-                    <div class="col-md-2">
-                        <img src="./images/good.svg" alt="evaluation img" width="40" />
-                    </div>
-                    <div class="col-md-5">
-                        <p>此用户没有填写评价</p>
-                        <p class="time">[2019-2-11 09:22:12]</p>
-                    </div>
-                    <div class="col-md-2">
-                        <span>商家</span>
-                        <span>太初网络充值专营店</span>
-                    </div>
-                    <div class="col-md-3">
-                        <span>四川移动20元 移动话费 自动充值 直充快充 快速到账</span>
-                        <p class="price">20.0元</p>
-                    </div>
-                </div>
-                <div class="row bottom-line">
-                    <div class="col-md-2">
-                        <img src="./images/medium.svg" alt="evaluation img" width="40" />
-                    </div>
-                    <div class="col-md-5">
-                        <p>此用户没有填写评价</p>
-                        <p class="time">[2019-2-11 09:22:12]</p>
-                    </div>
-                    <div class="col-md-2">
-                        <span>商家</span>
-                        <span>太初网络充值专营店</span>
-                    </div>
-                    <div class="col-md-3">
-                        <span>四川移动20元 移动话费 自动充值 直充快充 快速到账</span>
-                        <p class="price">20.0元</p>
-                    </div>
-                </div>
             </div>
 </asp:Content>

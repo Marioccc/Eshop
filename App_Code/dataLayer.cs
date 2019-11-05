@@ -52,6 +52,18 @@ namespace Eshop.App_Code
             return result;
         }
 
+
+        public SqlDataReader getReader(string cmd)
+        {
+            SqlConnection conn = getConnection();
+            conn.Open();
+            SqlCommand command = new SqlCommand(cmd, conn);
+            SqlDataReader reader = command.ExecuteReader();
+            return reader;
+        }
+
+
+
         /// <summary>
         /// 获取所要查询的数据集合
         /// </summary>

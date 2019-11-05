@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Eshop.App_Code
 {
@@ -41,8 +43,8 @@ namespace Eshop.App_Code
 
         public int getCartNum(string id)
         {
-            string cmd = string.Format("select * from cart where MemberId={0} ",id);
-            return data.getDataNum(cmd);
+            string cmd = string.Format("select COUNT(*) from cart where MemberId={0} ",id);
+            return (int)data.queryData(cmd);
         }
 
         public string getUserID(string name)
@@ -57,6 +59,29 @@ namespace Eshop.App_Code
             string cmd = string.Format("select HeadImg from member where Name='{0}' ", id);
             object result = data.queryData(cmd);
             return result.ToString();
+        }
+
+        public DataSet getEvaluation(string id)
+        {
+            string cmd = string.Format("select * from evaluation where MerId={0} ", id);
+            return data.getData(cmd);
+            /*
+            
+            SqlDataReader reader = data.getReader(cmd);
+            Evaluation evaluation = new Evaluation(); 
+            while(reader.Read())
+            {
+                evaluation.memberID = (int)reader["MerId"];
+                evaluation.grade = (int)reader["grade"];
+                evaluation.message = reader["message"].ToString();
+                evaluation.merchant = reader["merchant"].ToString();
+                evaluation.time = DateTime.Parse( reader["time"].ToString() );
+                evaluation.info = reader["commodityInfo"].ToString();
+                evaluation.price = float.Parse(reader["commodityPrice"].ToString());
+            }
+            reader.Close();
+            return evaluation;
+            */
         }
     }
 }
