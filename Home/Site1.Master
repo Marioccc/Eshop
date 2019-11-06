@@ -15,70 +15,72 @@
 
 </head>
 <body>
-    <header class="d-none d-sm-flex">
-        <div class="container clearPadding">
-            <div class="row">
-                <div class="col-md-3 offset-md-9">
-                    <form  runat="server">
-                    <ul class="nav float-md-right">
+    <form runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <header class="d-none d-sm-flex">
+            <div class="container clearPadding">
+                <div class="row">
+                    <div class="col-md-3 offset-md-9">
+                        <ul class="nav float-md-right">
                             <li class="nav-item">
-                                <a class="nav-link" href="login.aspx" runat="server"  id="login">登录</a>
+                                <a class="nav-link" href="login.aspx" runat="server" id="login">登录</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="register.aspx" runat="server" id="register">注册</a>
                             </li>
                             <li class="nav-item vertical-c">
-                                <asp:LinkButton Text="退出"  OnClick="loginOut_Click"  ID="loginOut" runat="server"  />
+                                <asp:LinkButton Text="退出" OnClick="loginOut_Click" ID="loginOut" runat="server" />
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link clearPadding-right" href="cartList.aspx" runat="server" id="cart">购物车</a>
                             </li>
-                    </ul>
-                        </form>
+                        </ul>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container clearPadding">
-            <a class="navbar-brand" href="index.aspx">
-                <img src="./images/logo.jpg" width="30" height="30" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">所有商品</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">今日特价</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">热销商品</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" aria-label="Search">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">搜索</button>
-                </form>
+        </header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container clearPadding">
+                <a class="navbar-brand" href="index.aspx">
+                    <img src="./images/logo.jpg" width="30" height="30" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">所有商品</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">今日特价</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">热销商品</a>
+                        </li>
+                    </ul>
+                    <div class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" aria-label="Search">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">搜索</button>
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </nav>
-    <script src="./js/jquery-3.4.1.min.js"></script>
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    </asp:ContentPlaceHolder>
-    <footer>
-        <div class="container">
-            <p class="float-right">
-                <a href="#">回到顶部</a>
-            </p>
-            <p>© 2019-2020 Company</p>
-        </div>
-    </footer>
-    
+        </nav>
+        <script src="./js/jquery-3.4.1.min.js"></script>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <footer>
+            <div class="container">
+                <p class="float-right">
+                    <a href="#">回到顶部</a>
+                </p>
+                <p>© 2019-2020 Company</p>
+            </div>
+        </footer>
+    </form>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 

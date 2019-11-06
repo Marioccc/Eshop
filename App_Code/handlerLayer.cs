@@ -65,23 +65,64 @@ namespace Eshop.App_Code
         {
             string cmd = string.Format("select * from evaluation where MerId={0} ", id);
             return data.getData(cmd);
-            /*
-            
-            SqlDataReader reader = data.getReader(cmd);
-            Evaluation evaluation = new Evaluation(); 
-            while(reader.Read())
+        }
+
+        public DataSet getRandomCommodity()
+        {
+            string cmd = "SELECT TOP 3 * FROM  commodityInfo ORDER BY NEWID()";
+            return data.getData(cmd);
+        }
+
+        public DataSet getCommodity(string id)
+        {
+            string cmd = string.Format("select * from commodityInfo where Id={0}", id);
+            return data.getData(cmd);
+        }
+
+        public bool addToCart(string userID , string commodityID , string num,string price)
+        {
+            string cmd = string.Format("insert into cart (MemberId,MerId,Amount,totalPrice) values ({0},{1},{2},{3})", userID, commodityID, num,price);
+            if(data.updateData(cmd))
             {
-                evaluation.memberID = (int)reader["MerId"];
-                evaluation.grade = (int)reader["grade"];
-                evaluation.message = reader["message"].ToString();
-                evaluation.merchant = reader["merchant"].ToString();
-                evaluation.time = DateTime.Parse( reader["time"].ToString() );
-                evaluation.info = reader["commodityInfo"].ToString();
-                evaluation.price = float.Parse(reader["commodityPrice"].ToString());
+                return true;
             }
-            reader.Close();
-            return evaluation;
-            */
+            return false;
+        }
+
+        public DataSet getCart(string id)
+        {
+            string cmd = string.Format("select * from commodityInfo inner join cart on commodityInfo.Id = cart.MerId where cart.MemberId={0}", id);
+            return data.getData(cmd);
+        }
+
+        public bool removeCartItem(string id)
+        {
+            string cmd = string.Format("delete from cart where CartId={0}", id);
+            return data.updateData(cmd);
+        }
+
+        public DataSet getContactData(string id)
+        {
+            string cmd = string.Format("select * from contact where MemberId={0}", id);
+            return data.getData(cmd);
+        }
+
+        public bool commitToCheckout(string id,string num)
+        {
+            string cmd = string.Format("update cart set Amount={0},payState={1} where CartId={2}", num,1,id);
+            return data.updateData(cmd);
+        }
+
+        public DataSet getPayCart(string id)
+        {
+            string cmd = string.Format("select * from commodityInfo inner join cart on commodityInfo.Id = cart.MerId where cart.MemberId={0} and payState={1}", id,1);
+            return data.getData(cmd);
+        }
+
+        public bool cartRoallBack(string id)
+        {
+            string cmd = string.Format("update cart set payState=0 where MemberId={0}", id);
+            return data.updateData(cmd);
         }
     }
 }

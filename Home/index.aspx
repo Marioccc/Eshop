@@ -49,57 +49,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="row shop-card">
-                        <a href="#">
-                            <div class="card">
-                                <img src="./images/08e0d3e4-63a8-3de4-107a-f6977321f106.jpg" class="card-img-top"
-                                    style="width: 230px; height: 230px;" alt="...">
-                                <div class="card-body text-center">
-                                    <p class="font-weight-bold">电饭锅 白色</p>
-                                    <p class="font-weight-lighter">智能蒸煮</p>
-                                    <div class="price">
-                                        <span>1300元</span><span class="text-discount">1999元</span>
+
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" class="col-md-9">
+                    <ContentTemplate>
+                        <div class="row">
+                            <asp:Repeater ID="discountList" runat="server">
+                                <ItemTemplate>
+                                    <div class="col-md-4">
+                                        <div class="row shop-card">
+
+                                            <a href="commodityInfo.aspx?id=<%#Eval("Id") %>">
+                                                <div class="card">
+                                                    <img src="<%#Eval("Picture") %>" class="card-img-top" style="width: 230px; height: 230px;">
+                                                    <div class="card-body text-center">
+                                                        <p class="font-weight-bold"><%#Eval("Name") %></p>
+                                                        <p class="font-weight-lighter"><%#Eval("title") %></p>
+                                                        <div class="price">
+                                                            <span>1300元</span><span class="text-discount"><%#Eval("Price") %>元</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row shop-card">
-                        <a href="#">
-                            <div class="card">
-                                <img src="./images/08e0d3e4-63a8-3de4-107a-f6977321f106.jpg" class="card-img-top"
-                                    style="width: 230px; height: 230px;" alt="...">
-                                <div class="card-body text-center">
-                                    <p class="font-weight-bold">电饭锅 白色</p>
-                                    <p class="font-weight-lighter">智能蒸煮</p>
-                                    <div class="price">
-                                        <span>1300元</span><span class="text-discount">1999元</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row shop-card">
-                        <a href="#">
-                            <div class="card">
-                                <img src="./images/08e0d3e4-63a8-3de4-107a-f6977321f106.jpg" class="card-img-top"
-                                    style="width: 230px; height: 230px;" alt="...">
-                                <div class="card-body text-center">
-                                    <p class="font-weight-bold">电饭锅 白色</p>
-                                    <p class="font-weight-lighter">智能蒸煮</p>
-                                    <div class="price">
-                                        <span>1300元</span><span class="text-discount">1999元</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                        <asp:Timer ID="Timer1" runat="server" Interval="3000"></asp:Timer>
+                        
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
             </div>
             <div class="row padding-top-bottom">
                 <img src="./images/solt_01.jpg" class="img-fluid" alt="">

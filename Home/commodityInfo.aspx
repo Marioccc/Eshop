@@ -53,14 +53,17 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="./images/commodity.jpg" class="img-fluid" alt="">
+                
+                <asp:Repeater ID="Repeater1" runat="server">
+                    <ItemTemplate>
+                        <div class="col-md-6">
+                    <img src="<%#Eval("Picture") %>" class="img-fluid" alt="">
                 </div>
-                <div class="col-md-6">
-                    <h3>高速无线充电套装</h3>
-                    <p class="depict">快速无线闪充 / 独立静音风扇 / Qi充电标准 / 安全充电</p>
-                    <p class="price owner">官方自营</p>
-                    <h4 class="price">199元</h4>
+                        <div class="col-md-6">
+                    <h3><%#Eval("Name") %></h3>
+                    <p class="depict"><%#Eval("detail") %></p>
+                    <p class="price owner"><%#Eval("GoodFacturer") %></p>
+                    <h4 class="price"><%#Eval("Price") %>元</h4>
                     <div class="address">
                         <img src="./images/位置.svg" alt="">
                         <p>四川省 绵阳市 游仙区 游仙镇<span class="price modifAddress">修改</span></p>
@@ -69,8 +72,10 @@
                     <div class="capacity">
                         <p>白色</p>
                     </div>
-                    <button type="button" class="btn btn-danger btn-lg btn-block">加入购物车</button>
+                            <asp:Button Text="加入购物车" runat="server" class="btn btn-danger btn-lg btn-block" ID="addToCart" OnClick="addToCart_Click" />
                 </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </section>

@@ -90,7 +90,14 @@
     <Content Include="Home\images\bad.svg" />
     <Content Include="Home\images\banner_01.jpg" />
     <Content Include="Home\images\commodity.jpg" />
-    <Content Include="Home\images\commodityImgs\a01.png" />
+    <Content Include="Home\images\commodityImgs\a01.jpg" />
+    <Content Include="Home\images\commodityImgs\a02.jpg" />
+    <Content Include="Home\images\commodityImgs\a03.jpg" />
+    <Content Include="Home\images\commodityImgs\a04.jpg" />
+    <Content Include="Home\images\commodityImgs\a05.jpg" />
+    <Content Include="Home\images\commodityImgs\a06.jpg" />
+    <Content Include="Home\images\commodityImgs\a07.jpg" />
+    <Content Include="Home\images\commodityImgs\a08.jpg" />
     <Content Include="Home\images\deer.png" />
     <Content Include="Home\images\deer2.jpg" />
     <Content Include="Home\images\good.svg" />
