@@ -164,13 +164,14 @@
         let cartNum = $(".list").length;
         // 计算结算商品数量
         $(".num").text(cartNum);  
+
         //计算商品总价
         let totalPrice = 0;
         $(".pre-item-price").each(function () {
             totalPrice += +($(this).text());
         })
         $(".totalPrice").text(totalPrice);
-        totalPrice -= +($(".post-fee").text());
+        totalPrice += +($(".post-fee").text());
         $(".payPrice").text(totalPrice);
     </script>
 </asp:Content>

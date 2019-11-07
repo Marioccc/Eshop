@@ -81,11 +81,14 @@
     <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="Home\addressManager.aspx" />
     <Content Include="Home\basicInfo.aspx" />
     <Content Include="Home\cartList.aspx" />
     <Content Include="Home\check_out.aspx" />
     <Content Include="Home\commodityInfo.aspx" />
     <Content Include="Home\css\Site1.css" />
+    <Content Include="Home\images\add.svg" />
+    <Content Include="Home\js\distpicker.js" />
     <Content Include="Home\evaluation.aspx" />
     <Content Include="Home\images\bad.svg" />
     <Content Include="Home\images\banner_01.jpg" />
@@ -122,6 +125,13 @@
     <Compile Include="App_Code\Evaluation.cs" />
     <Compile Include="App_Code\handlerLayer.cs" />
     <Compile Include="App_Code\Member.cs" />
+    <Compile Include="Home\addressManager.aspx.cs">
+      <DependentUpon>addressManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\addressManager.aspx.designer.cs">
+      <DependentUpon>addressManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home\basicInfo.aspx.cs">
       <DependentUpon>basicInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -11,7 +11,7 @@ namespace Eshop.App_Code
         /// 获取一个数据连接
         /// </summary>
         /// <returns>返回一个连接对象</returns>
-        public SqlConnection getConnection()
+        private SqlConnection getConnection()
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["eshopConnectionString"].ToString();

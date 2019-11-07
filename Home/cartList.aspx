@@ -12,7 +12,7 @@
 
             .table .numOper {
                 height: 2rem;
-                width: 5rem;
+                width: 6rem;
                 border: 1px solid #e0e0e0;
                 display: flex;
                 justify-content: space-between;
@@ -22,7 +22,16 @@
             .table thead th {
                 border: none;
             }
-
+            .table .numOper .plus,
+            .table .numOper .minus {
+                height:2rem;
+            }
+            .table .numOper .plus{
+                border-left:1px solid #e0e0e0;
+            }
+            .table .numOper .minus{
+                border-right:1px solid #e0e0e0;
+            }
             .table .numOper .plus:hover,
             .table .numOper .minus:hover {
                 cursor: pointer;
@@ -73,10 +82,16 @@
             border: none;
             background: none;
         }
-        .num{
-                background: none;
-                width: 1rem;
-                border: none;
+
+        .num {
+            background: none;
+            width: 2.4rem;
+            border: none;
+            text-align: center;
+        }
+        .per-total-Price{
+            border:none;
+            outline:none;
         }
     </style>
 </asp:Content>
@@ -88,7 +103,7 @@
                     <thead>
                         <tr>
                             <th scope="col">
-                                <input type="checkbox" name ="check_all" class="check-all">全选
+                                <input type="checkbox" name="check_all" class="check-all">全选
                             </th>
                             <th scope="col">商品名称</th>
                             <th scope="col">小计</th>
@@ -100,31 +115,33 @@
                     <tbody>
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                 <asp:Repeater ID="cartLists" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                    <th scope="row">
-                                        <input type="checkbox" name ="check_item"  class="check-item" value='<%#Eval("CartId") %>' />
-                                    </th>
-                                    <td class="text-truncate"><%#Eval("Name") %></td>
-                                    <td class="text-truncate"><%#Eval("totalPrice") %></td>
-                                    <td class="text-truncate">
-                                        <div class="numOper">
-                                            <img src="./images/plus .svg" class="plus" alt="" width="20">
-                                            <input type="text" name="num" value='<%#Eval("Amount") %>' readonly class="num"  />
-                                            <img src="./images/minus.svg" class="minus" alt="" width="22">
-                                        </div>
-                                    </td>
-                                    <td class="per-price"><%#Eval("Price") %></td>
-                                    <td class="operation">
-                                        <asp:Button runat="server" ID="removeItem" CommandArgument='<%#Eval("CartId") %>' OnCommand="removeItem_Command"  class="close" Text="&times;" />
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
+                                <asp:Repeater ID="cartLists" runat="server">
+                                    <ItemTemplate>
+                                        <tr>
+                                            <th scope="row">
+                                                <input type="checkbox" name="check_item" class="check-item" value='<%#Eval("CartId") %>' runat="server" id="checkID" />
+                                            </th>
+                                            <td class="text-truncate"><%#Eval("Name") %></td>
+                                            <td class="text-truncate">
+                                                <input type="text"  value='<%#Eval("totalPrice") %>' class="per-total-Price" runat="server" readonly />
+                                            </td>
+                                            <td class="text-truncate">
+                                                <div class="numOper">
+                                                    <img src="./images/minus.svg" class="minus" alt="" width="22">
+                                                    <input type="text" name="num" value='<%#Eval("Amount") %>' readonly class="num" runat="server" />
+                                                    <img src="./images/plus .svg" class="plus" alt="" width="25">
+                                                </div>
+                                            </td>
+                                            <td class="per-price"><%#Eval("Price") %></td>
+                                            <td class="operation">
+                                                <asp:Button runat="server" ID="removeItem" CommandArgument='<%#Eval("CartId") %>' OnCommand="removeItem_Command" class="close" Text="&times;" />
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </ContentTemplate>
                         </asp:UpdatePanel>
-                       
+
                     </tbody>
                 </table>
             </div>
@@ -132,7 +149,7 @@
                 <div class="col-md-3">共<span class="price total">0</span>件商品,已选择<span class="price choose">0</span>件</div>
                 <div class="col-md-3 offset-md-5">合计：<span class="price total-price">0</span>元</div>
                 <div class="col-md-1">
-                    <asp:Button Text="结算" runat="server" class="btn btn-primary checkOut-btn"  ID="checkOut_Btn" OnClick="checkOut_Btn_Click" />
+                    <asp:Button Text="结算" runat="server" class="btn btn-primary checkOut-btn" ID="checkOut_Btn" OnClick="checkOut_Btn_Click" />
                 </div>
             </div>
         </div>
@@ -295,13 +312,22 @@
             if ($(".check-item").prop("checked")) {
                 updateTotalPrice(parrentNode, true);
             }
+
+            let price = parrentNode.parentNode.parentNode.querySelector(".per-price").innerText;
+            num = parrentNode.querySelector(".num").value;
+            parrentNode.parentNode.parentNode.querySelector(".per-total-Price").value = (+price) * (+num);
         })
         // 点击减少购买商品数量
         $(".minus").click(function () {
             let parrentNode = this.parentNode;
             let num = parrentNode.querySelector(".num").value;
-            if (+num > 1)
+            if (+num > 1) {
                 parrentNode.querySelector(".num").value = +num - 1;
+
+                let price = parrentNode.parentNode.parentNode.querySelector(".per-price").innerText;
+                num = parrentNode.querySelector(".num").value;
+                parrentNode.parentNode.parentNode.querySelector(".per-total-Price").value = (+price) * (+num);
+            }
 
             if ($(".check-item").prop("checked") && (+num) > 1) {
                 updateTotalPrice(parrentNode, false);

@@ -81,10 +81,28 @@ namespace Eshop.App_Code
 
         public bool addToCart(string userID , string commodityID , string num,string price)
         {
-            string cmd = string.Format("insert into cart (MemberId,MerId,Amount,totalPrice) values ({0},{1},{2},{3})", userID, commodityID, num,price);
-            if(data.updateData(cmd))
+            string queryCommodityCmd = string.Format("select * from cart where MemberId={0} and MerId={1}", userID, commodityID);
+            if(data.queryData(queryCommodityCmd)==null)
             {
-                return true;
+                string cmd = string.Format("insert into cart (MemberId,MerId,Amount,totalPrice,payState) values ({0},{1},{2},{3},{4})", userID, commodityID, num, price,"0");
+                if (data.updateData(cmd))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                string queryNumCmd = string.Format("select Amount from cart where  MemberId={0} and MerId={1}", userID, commodityID);
+                string queryPriceCmd = string.Format("select totalPrice from cart where  MemberId={0} and MerId={1}", userID, commodityID);
+                string queryAmount = data.queryData(queryNumCmd).ToString() ;
+                string queryPrice = data.queryData(queryPriceCmd).ToString();
+                int totalAmout = int.Parse(queryAmount) + int.Parse(num);
+                float totalPrice = float.Parse(queryPrice) + float.Parse(price);
+                string cmd = string.Format("update cart set Amount={0},totalPrice={1} where MemberId={2} and MerId={3}",totalAmout,totalPrice , userID, commodityID);
+                if (data.updateData(cmd))
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -107,9 +125,9 @@ namespace Eshop.App_Code
             return data.getData(cmd);
         }
 
-        public bool commitToCheckout(string id,string num)
+        public bool commitToCheckout(string id,string num,string price)
         {
-            string cmd = string.Format("update cart set Amount={0},payState={1} where CartId={2}", num,1,id);
+            string cmd = string.Format("update cart set Amount={0},payState={1},totalPrice={2}  where CartId={3}", num,1, price ,id);
             return data.updateData(cmd);
         }
 
@@ -123,6 +141,12 @@ namespace Eshop.App_Code
         {
             string cmd = string.Format("update cart set payState=0 where MemberId={0}", id);
             return data.updateData(cmd);
+        }
+
+        public string getCommodityPrice(string id)
+        {
+            string cmd = string.Format("select Price from commodityInfo where Id={0}", id);
+            return data.queryData(cmd).ToString();
         }
     }
 }

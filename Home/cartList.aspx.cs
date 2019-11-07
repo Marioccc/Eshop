@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Eshop.App_Code;
+using System.Web.UI.HtmlControls;
 
 namespace Eshop.Home
 {
@@ -40,17 +41,32 @@ namespace Eshop.Home
 
         protected void checkOut_Btn_Click(object sender, EventArgs e)
         {
-            string nums = Request.Form["num"];
-            string ids = Request.Form["check_item"];
-            for (int i = 0; i < ids.Length; i++)
+            bool flag = false;
+            for (int i = 0; i < cartLists.Items.Count; i++)
             {
-                if (ids[i] == ',') continue;
-                if (!handler.commitToCheckout(ids[i].ToString(), nums[i].ToString()))
+                RepeaterItem item = cartLists.Items[i];
+
+                HtmlInputCheckBox checkboxItem = (HtmlInputCheckBox)item.Controls[1];
+                if (checkboxItem.Checked)
                 {
-                    Response.Write("<script>alert('出现异常情况！');</script>");
+                    flag = true;
+                    HtmlInputText numText = (HtmlInputText)item.Controls[5];
+                    HtmlInputText totalPrice = (HtmlInputText)item.Controls[3];
+                    if (!handler.commitToCheckout(checkboxItem.Value , numText.Value , totalPrice.Value))
+                    {
+                        Response.Write("<script>alert('出现异常情况！');</script>");
+                    }
                 }
             }
-            Response.Redirect("check_out.aspx");
+            if (flag)
+            {
+                Response.Redirect("check_out.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('请选中需要结算的商品！');</script>");
+            }
+            
         }
     }
 }

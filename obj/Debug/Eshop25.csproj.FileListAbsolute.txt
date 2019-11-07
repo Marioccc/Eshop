@@ -33,4 +33,3 @@ C:\Users\mario\Desktop\Eshop\obj\Debug\Eshop25.csproj.CopyComplete
 C:\Users\mario\Desktop\Eshop\obj\Debug\Eshop.dll
 C:\Users\mario\Desktop\Eshop\obj\Debug\Eshop.pdb
 C:\Users\mario\Desktop\Eshop\bin\AjaxControlToolkit.dll
-C:\Users\mario\Desktop\Eshop\obj\Debug\Eshop25.csprojAssemblyReference.cache
