@@ -148,5 +148,29 @@ namespace Eshop.App_Code
             string cmd = string.Format("select Price from commodityInfo where Id={0}", id);
             return data.queryData(cmd).ToString();
         }
+
+        public bool addContact(Contact contact)
+        {
+            if (contact.defaultAddress == 1)
+            {
+                string clearDefaultCmd = string.Format("update contact set DefaultValue=0 where MemberId={0}", contact.memberID);
+                if (!data.updateData(clearDefaultCmd)) return false;
+            }
+            string cmd = string.Format("insert into contact (MemberId,Addressee,address,phone,zip,DefaultValue,detailAddress) values ({0},'{1}','{2}','{3}','{4}',{5},'{6}')"
+                , contact.memberID, contact.name, contact.address, contact.phone, contact.zip, contact.defaultAddress,contact.detailAddress);
+            return data.updateData(cmd);
+        }
+
+        public DataSet getAddressData(string id)
+        {
+            string cmd = string.Format("select * from contact where MemberId={0}", id);
+            return data.getData(cmd);
+        }
+
+        public bool deleteContact(string id)
+        {
+            string cmd = string.Format("delete from contact where ContactId={0}", id);
+            return data.updateData(cmd);
+        }
     }
 }

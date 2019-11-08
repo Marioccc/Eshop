@@ -121,6 +121,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Contact.cs" />
     <Compile Include="App_Code\dataLayer.cs" />
     <Compile Include="App_Code\Evaluation.cs" />
     <Compile Include="App_Code\handlerLayer.cs" />
