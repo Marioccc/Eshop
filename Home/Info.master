@@ -50,11 +50,11 @@
                             role="tab" aria-controls="v-pills-home" aria-selected="true">
                             基本资料
                         </a>
-                        <a class="nav-link" id="v-pills-profile-tab"  href="#"
+                        <a class="nav-link" id="v-pills-profile-tab"  href="order.aspx"
                             role="tab" aria-controls="v-pills-profile" aria-selected="false">
                             我的订单
                         </a>
-                        <a class="nav-link" id="v-pills-messages-tab" href="#"
+                        <a class="nav-link" id="v-pills-messages-tab" href="addressManager.aspx"
                             role="tab" aria-controls="v-pills-messages" aria-selected="false">
                             收货地址
                         </a>

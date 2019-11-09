@@ -88,6 +88,7 @@
     <Content Include="Home\commodityInfo.aspx" />
     <Content Include="Home\css\Site1.css" />
     <Content Include="Home\images\add.svg" />
+    <Content Include="Home\images\delete.svg" />
     <Content Include="Home\js\distpicker.js" />
     <Content Include="Home\evaluation.aspx" />
     <Content Include="Home\images\bad.svg" />
@@ -114,6 +115,7 @@
     <Content Include="Home\js\jquery-3.4.1.min.js" />
     <Content Include="Home\login.aspx" />
     <Content Include="Home\my_evaluation.aspx" />
+    <Content Include="Home\order.aspx" />
     <Content Include="Home\register.aspx" />
     <Content Include="Home\Validate.aspx" />
     <Content Include="Global.asax" />
@@ -126,6 +128,7 @@
     <Compile Include="App_Code\Evaluation.cs" />
     <Compile Include="App_Code\handlerLayer.cs" />
     <Compile Include="App_Code\Member.cs" />
+    <Compile Include="App_Code\Order.cs" />
     <Compile Include="Home\addressManager.aspx.cs">
       <DependentUpon>addressManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -195,6 +198,13 @@
     </Compile>
     <Compile Include="Home\my_evaluation.aspx.designer.cs">
       <DependentUpon>my_evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\order.aspx.cs">
+      <DependentUpon>order.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\order.aspx.designer.cs">
+      <DependentUpon>order.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>

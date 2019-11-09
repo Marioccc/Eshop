@@ -74,11 +74,12 @@
                     <asp:Repeater ID="contactList" runat="server">
                         <ItemTemplate>
                             <div class="address">
+                                <asp:Label Text='<%#Eval("ContactId") %>' Visible="false" runat="server" ID="contactID" />
                                 <p><%#Eval("Addressee") %></p>
                                 <p><%#Eval("phone") %></p>
                                 <p><%#Eval("address") %></p>
                                 <p>
-                                    <span>XXXXXXXX</span>
+                                    <span><%#Eval("zip") %></span>
                                     <span class="price float-right modify-address">修改</span>
                                 </p>
                             </div>
@@ -91,17 +92,17 @@
                 <asp:Repeater ID="cartList" runat="server">
                     <ItemTemplate>
                         <div class="row list">
-                    <div class="col-md-8">
-                        <img src='<%#Eval("Picture") %>'  width="40" height="40">
-                        <span><%#Eval("Name") %></span>
-                    </div>
-                    <div class="col-md-3">
-                        <span><%#Eval("Price") %>元 X <%#Eval("Amount") %></span>
-                    </div>
-                    <div class="col-md-1"> 
-                        <span class="price"><span class="pre-item-price"><%#Eval("totalPrice") %></span>元</span>
-                    </div>
-                </div>
+                            <div class="col-md-8">
+                                <img src='<%#Eval("Picture") %>' width="40" height="40">
+                                <span><%#Eval("Name") %></span>
+                            </div>
+                            <div class="col-md-3">
+                                <span><%#Eval("Price") %>元 X <%#Eval("Amount") %></span>
+                            </div>
+                            <div class="col-md-1">
+                                <span class="price"><span class="pre-item-price"><%#Eval("totalPrice") %></span>元</span>
+                            </div>
+                        </div>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
@@ -147,14 +148,15 @@
                         <li>
                             <span>应付总额：</span>
                             <span class="price"><span class="payPrice">0</span>元</span>
+                            <asp:HiddenField ID="Total_price" runat="server" Value="" />
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="row padding-top-bottom line">
                 <div class="col-md-3 offset-md-9">
-                    <asp:Button Text="返回购物车" runat="server"  class="btn btn-light" ID="backToCart" OnClick="backToCart_Click" />
-                    <button type="button" class="btn btn-danger">立即下单</button>
+                    <asp:Button Text="返回购物车" runat="server" class="btn btn-light" ID="backToCart" OnClick="backToCart_Click" />
+                    <asp:Button Text="立即下单" runat="server" class="btn btn-danger" ID="commit" OnClick="commit_Click" />
                 </div>
             </div>
         </div>
@@ -163,7 +165,7 @@
     <script>
         let cartNum = $(".list").length;
         // 计算结算商品数量
-        $(".num").text(cartNum);  
+        $(".num").text(cartNum);
 
         //计算商品总价
         let totalPrice = 0;
@@ -173,5 +175,6 @@
         $(".totalPrice").text(totalPrice);
         totalPrice += +($(".post-fee").text());
         $(".payPrice").text(totalPrice);
+        $("#ContentPlaceHolder1_Total_price").val(totalPrice);
     </script>
 </asp:Content>

@@ -33,6 +33,15 @@ namespace Eshop.Home
         protected global::System.Web.UI.WebControls.Repeater cartList;
 
         /// <summary>
+        /// Total_price 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField Total_price;
+
+        /// <summary>
         /// backToCart 控件。
         /// </summary>
         /// <remarks>
@@ -40,5 +49,14 @@ namespace Eshop.Home
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button backToCart;
+
+        /// <summary>
+        /// commit 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button commit;
     }
 }

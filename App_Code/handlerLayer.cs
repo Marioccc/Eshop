@@ -121,7 +121,13 @@ namespace Eshop.App_Code
 
         public DataSet getContactData(string id)
         {
-            string cmd = string.Format("select * from contact where MemberId={0}", id);
+            string cmd = string.Format("select * from contact where MemberId={0} and DefaultValue=1", id);
+            DataSet result = data.getData(cmd);
+            if (result.Tables[0].Rows.Count==0)
+            {
+                string chooseFirst = string.Format("select top 1*  from contact where  MemberId={0}", id);
+                return data.getData(chooseFirst);
+            }
             return data.getData(cmd);
         }
 
@@ -170,6 +176,50 @@ namespace Eshop.App_Code
         public bool deleteContact(string id)
         {
             string cmd = string.Format("delete from contact where ContactId={0}", id);
+            return data.updateData(cmd);
+        }
+
+        public bool commitOrder(Order order)
+        {
+            string insertOrder = string.Format("insert into orders(OrderId,MemberId,ContactId,Total,Status,OrderDate,evaluationID) values('{0}',{1},{2},{3},0,'{4}',-1)",
+                order.orderID, order.memberID, order.contactID, order.totalPrice, order.date);
+            if (data.updateData(insertOrder))
+            {
+                string queryCartData = "select * from cart where payState=1";
+                SqlDataReader reader = data.getReader(queryCartData);
+                while (reader.Read())
+                {
+                    string cartID = reader["CartId"].ToString();
+                    string commodityID = reader["MerId"].ToString();
+                    string amount = reader["Amount"].ToString();
+                    string totalPrice = reader["totalPrice"].ToString();
+
+                    string insertOrderDetail = string.Format("insert into orderDetail (orderID,commodityID,amount,totalPrice) values ('{0}',{1},{2},{3})", order.orderID, commodityID, amount, totalPrice);
+                    if (!data.updateData(insertOrderDetail)) return false;
+
+                    string deleteCart = string.Format("delete from cart where CartId={0}", cartID);
+                    if (!data.updateData(deleteCart)) return false;
+                }
+                
+            }
+            return true;
+        }
+
+        public DataSet getOrderData()
+        {
+            string cmd = "select * from orders";
+            return data.getData(cmd);
+        }
+
+        public DataSet getOrderDetailData(string orderID)
+        {
+            string cmd = string.Format("select * from orderDetail inner join commodityInfo on orderDetail.commodityID = commodityInfo.Id where orderID='{0}'", orderID);
+            return data.getData(cmd);
+        }
+
+        public bool deleteOrder(string id)
+        {
+            string cmd = string.Format("delete from orders where OrderId='{0}'", id);
             return data.updateData(cmd);
         }
     }

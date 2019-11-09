@@ -52,7 +52,11 @@ namespace Eshop.App_Code
             return result;
         }
 
-
+        /// <summary>
+        /// 返回一个Reader类型的数据集
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
         public SqlDataReader getReader(string cmd)
         {
             SqlConnection conn = getConnection();
