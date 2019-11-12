@@ -44,5 +44,22 @@ namespace Eshop.Home
             }
             order_List_Init();
         }
+
+        protected void modifyInfo_Click(object sender, EventArgs e)
+        {
+            int level;
+            if (goodEvaluation.Value == "1")
+            {
+                level = 3;
+            }else if (mediumEvaluation.Value == "1")
+            {
+                level = 2;
+            }
+            else
+            {
+                level = 1;
+            }
+            //if(!handler.orderEvaluation(level,feeling.Value,))
+        }
     }
 }

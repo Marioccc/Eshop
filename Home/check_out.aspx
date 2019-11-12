@@ -63,6 +63,62 @@
                 section .modify-address:hover {
                     cursor: pointer;
                 }
+
+
+                /*修改卡片样式*/
+                .background-cover {
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #000;
+            opacity: 0.5;
+        }
+
+        .address-card {
+            position: fixed;
+            z-index: 20;
+            height: 60%;
+            width: 30%;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%,-50%);
+            background-color: white;
+        }
+
+            .address-card .model-head {
+                padding: 1rem;
+            }
+
+            .address-card .model-row {
+                margin: 1rem 0;
+            }
+
+            .address-card .select-row {
+                margin: 0.5rem 0;
+            }
+
+            .address-card .model-bottom {
+                padding: 1rem;
+            }
+
+            .address-card .btn {
+                width: 100%;
+            }
+
+            .address-card .close:hover {
+                cursor: pointer;
+            }
+
+            .address-card .detail-address {
+                resize: none;
+            }
+
+        .disapper {
+            display: none;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -71,20 +127,21 @@
             <h3 class="padding-top-bottom">收货地址</h3>
             <div class="row">
                 <div class="col-md-5">
-                    <asp:Repeater ID="contactList" runat="server">
-                        <ItemTemplate>
-                            <div class="address">
-                                <asp:Label Text='<%#Eval("ContactId") %>' Visible="false" runat="server" ID="contactID" />
-                                <p><%#Eval("Addressee") %></p>
-                                <p><%#Eval("phone") %></p>
-                                <p><%#Eval("address") %></p>
-                                <p>
-                                    <span><%#Eval("zip") %></span>
-                                    <span class="price float-right modify-address">修改</span>
-                                </p>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                    <div class="address">
+                        <asp:Label Text='' Visible="false" runat="server" ID="contactID" />
+                        <p runat="server" id="address_name" class="address_name"></p>
+                        <p runat="server" id="address_phone" class="address_phone"></p>
+                        <div>
+                            <span runat="server" class="address_province" id="address_province"></span>
+                            <span runat="server" class="address_city" id="address_city"></span>
+                            <span runat="server" class="address_area" id="address_area"></span>
+                            <span runat="server" class="address_detail" id="address_detail"></span>
+                        </div>
+                        <p>
+                            <span runat="server" id="address_zip" class="address_zip"></span>
+                            <span class="price float-right modify-address">修改</span>
+                        </p>
+                    </div>
                 </div>
             </div>
             <h3 class="padding-top-bottom">商品</h3>
@@ -162,7 +219,95 @@
         </div>
     </section>
 
+
+    <div class="background-cover disapper"></div>
+    <div class="address-card disapper card-add">
+        <div class="container">
+            <div class="row bg-light model-head">
+                <div class="col-md-8">
+                    <h5>修改收货地址</h5>
+                </div>
+                <div class="col-md-4">
+                    <span class="close model-close">&times;</span>
+                </div>
+            </div>
+            <div class="row model-row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="姓名" runat="server" id="name">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="手机号" runat="server" id="phone">
+                </div>
+            </div>
+            <div class="row model-row">
+                <div class="col-md-12">
+                    <div data-toggle="distpicker">
+                        <select data-province="---- 选择省 ----" class="custom-select select-row chooseProvince" runat="server" id="chooseProvince"></select>
+                        <select data-city="---- 选择市 ----" class="custom-select select-row chooseCity" runat="server" id="chooseCity"></select>
+                        <select data-district="---- 选择区 ----" class="custom-select select-row chooseArea" runat="server" id="chooseArea"></select>
+                        <asp:HiddenField runat="server" ID="province" Value="" />
+                        <asp:HiddenField runat="server" ID="city" Value="" />
+                        <asp:HiddenField runat="server" ID="district" Value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="row model-row">
+                <div class="col-md-12">
+                    <textarea class="form-control detail-address" id="addressDetail" rows="3" placeholder="详细地址" runat="server"></textarea>
+                </div>
+            </div>
+            <div class="row model-row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" placeholder="邮政编码" runat="server" id="zip">
+                </div>
+            </div>
+            <div class="bg-light row model-bottom">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-danger model-close">取消</button>
+                </div>
+                <div class="col-md-6">
+                    <asp:Button Text="保存" runat="server" class="btn btn-info" ID="modify_Info" OnClick="modify_Info_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./js/distpicker.js"></script>
     <script>
+        let modelCard = $(".card-add");
+        let cover = $(".background-cover");
+        $(".modify-address").click(function () {
+            cover.fadeToggle();
+            modelCard.fadeToggle();
+
+            $("#ContentPlaceHolder1_name").val($(".address_name").text());
+            $("#ContentPlaceHolder1_phone").val($(".address_phone").text());
+            $("#ContentPlaceHolder1_zip").val($(".address_zip").text());
+        })
+        $(".model-close").click(function () {
+            closeModel();
+        })
+        function closeModel() {
+            modelCard.fadeToggle();
+            cover.fadeToggle();
+        }
+
+        $("#ContentPlaceHolder1_chooseProvince").change(function () {
+            let value = $('#ContentPlaceHolder1_chooseProvince').distpicker()[0].value;
+            $("#ContentPlaceHolder1_province").val(value);
+        })
+
+        $("#ContentPlaceHolder1_chooseCity").change(function () {
+            let value = $('#ContentPlaceHolder1_chooseCity').distpicker()[0].value;
+            $("#ContentPlaceHolder1_city").val(value);
+        })
+
+        $("#ContentPlaceHolder1_chooseArea").change(function () {
+            let value = $('#ContentPlaceHolder1_chooseArea').distpicker()[0].value;
+            $("#ContentPlaceHolder1_district").val(value);
+        })
+
         let cartNum = $(".list").length;
         // 计算结算商品数量
         $(".num").text(cartNum);
@@ -177,4 +322,5 @@
         $(".payPrice").text(totalPrice);
         $("#ContentPlaceHolder1_Total_price").val(totalPrice);
     </script>
+
 </asp:Content>

@@ -24,17 +24,20 @@
                     <div class="col-md-2">
                         <img src='<%#Eval("grade") %>'   alt="evaluation img" width="40" id="img" runat="server" />
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <p id="message" runat="server"><%#Eval("message") %></p>
                         <p class="time" id="time" runat="server">[<%#Eval("time") %>]</p>
                     </div>
                     <div class="col-md-2">
-                        <span>商家</span>
+                        <span style="display:block">商家：</span>
                         <span id="merchant" runat="server"><%#Eval("merchant") %></span>
                     </div>
                     <div class="col-md-3">
                         <span id="commodityInfo" runat="server"><%#Eval("commodityInfo") %></span>
                         <p class="price" id="price" runat="server"><%#Eval("commodityPrice") %>元</p>
+                    </div>
+                    <div class="col-md-1">
+                        <asp:LinkButton Text="x" runat="server" ID="deleteItem"  CssClass="close" CommandArgument='<%#Eval("MessageId") %>' OnCommand="deleteItem_Command" />
                     </div>
                 </div>
                     </ItemTemplate>

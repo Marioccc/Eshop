@@ -119,6 +119,7 @@ namespace Eshop.App_Code
             return data.updateData(cmd);
         }
 
+        /*
         public DataSet getContactData(string id)
         {
             string cmd = string.Format("select * from contact where MemberId={0} and DefaultValue=1", id);
@@ -129,6 +130,17 @@ namespace Eshop.App_Code
                 return data.getData(chooseFirst);
             }
             return data.getData(cmd);
+        }
+        */
+        public SqlDataReader getContactData(string id)
+        {
+            string cmd = string.Format("select * from contact where MemberId={0} and DefaultValue=1", id);
+            SqlDataReader result = data.getReader(cmd);
+            if (!result.Read()) {
+                string chooseFirst = string.Format("select top 1*  from contact where  MemberId={0}", id);
+                return data.getReader(chooseFirst);
+            }
+            return result;
         }
 
         public bool commitToCheckout(string id,string num,string price)
@@ -162,8 +174,8 @@ namespace Eshop.App_Code
                 string clearDefaultCmd = string.Format("update contact set DefaultValue=0 where MemberId={0}", contact.memberID);
                 if (!data.updateData(clearDefaultCmd)) return false;
             }
-            string cmd = string.Format("insert into contact (MemberId,Addressee,address,phone,zip,DefaultValue,detailAddress) values ({0},'{1}','{2}','{3}','{4}',{5},'{6}')"
-                , contact.memberID, contact.name, contact.address, contact.phone, contact.zip, contact.defaultAddress,contact.detailAddress);
+            string cmd = string.Format("insert into contact (MemberId,Addressee,address,phone,zip,DefaultValue,detailAddress,province,city,area) values ({0},'{1}','{2}','{3}','{4}',{5},'{6}','{7}','{8}','{9}')"
+                , contact.memberID, contact.name, contact.address, contact.phone, contact.zip, contact.defaultAddress,contact.detailAddress,contact.province,contact.city,contact.area);
             return data.updateData(cmd);
         }
 
@@ -220,6 +232,73 @@ namespace Eshop.App_Code
         public bool deleteOrder(string id)
         {
             string cmd = string.Format("delete from orders where OrderId='{0}'", id);
+            return data.updateData(cmd);
+        }
+
+        public bool updateDefaultAddress(Contact contact,string contactID)
+        {
+            string cmd = string.Format("update contact set Addressee='{0}',address='{1}',phone='{2}',zip='{3}',detailAddress='{4}',province='{5}',city='{6}',area='{7}' where ContactId={8}",
+                contact.name, contact.address, contact.phone, contact.zip, contact.detailAddress, contact.province, contact.city, contact.area, contactID);
+            return data.updateData(cmd);
+        }
+
+        public Member getMemberData(string id)
+        {
+            string cmd = string.Format("select * from member where Id={0}", id);
+            SqlDataReader result = data.getReader(cmd);
+            Member member = new Member();
+            if (result.Read())
+            {
+                member.account = result["Name"].ToString();
+                member.pwd = result["Pwd"].ToString();
+                member.sex = result["Sex"].ToString();
+                member.phone = result["Phone"].ToString(); 
+                member.email = result["Email"].ToString();
+                member.registerDate = DateTime.Parse(result["RegDate"].ToString());
+                member.headUrl = result["HeadImg"].ToString();
+            }
+            return member;
+        }
+
+        public bool checkName(string name,string id)
+        {
+            string cmd = string.Format("select COUNT(*) from member where Name='{0}' and Id!={1} ", name,id);
+            int result = int.Parse(data.queryData(cmd).ToString());
+            if (result == 0) return true;
+            return false;
+        }
+        public bool updateMemberData(Member member,string id)
+        {
+            string cmd = string.Format("update member set Name='{0}',Pwd='{1}',Sex='{2}',Phone='{3}',Email='{4}' where Id={5}",
+                member.account, member.pwd, member.sex, member.phone, member.email, id);
+            
+            return data.updateData(cmd);
+        }
+
+        public bool updateUserImg(string id,string imgName)
+        {
+            string cmd = string.Format("update member set HeadImg='{0}' where Id={1}", imgName, id);
+            return data.updateData(cmd);
+        }
+        public bool orderEvaluation(int level , string evaluation , string orderID, string commodityID  , string memberID)
+        {
+            string getCommodityData = string.Format("select * from commodityInfo where Id={0}", commodityID);
+            SqlDataReader commodityData = data.getReader(getCommodityData);
+            string commodityInfo="", commodityMerchant="", commodityPrice="";
+            if (commodityData.Read())
+            {
+                commodityInfo = commodityData["Name"].ToString();
+                commodityMerchant = commodityData["GoodFacturer"].ToString();
+                commodityPrice = commodityData["Price"].ToString();
+            }
+            string cmd = string.Format("insert into evaluation (MerId,message,merchant,time,commodityInfo,commodityPrice,gradeLevel,orderID) values({0},'{1}','{2}','{3}','{4}',{5},{6},'{7}')",
+               memberID,evaluation,commodityMerchant,DateTime.Now.ToString(), commodityInfo,commodityPrice,level,orderID);
+            return data.updateData(cmd);
+        }
+
+        public bool deleteEvaluation(string id)
+        {
+            string cmd = string.Format("delete from evaluation where MessageId={0}", id);
             return data.updateData(cmd);
         }
     }

@@ -5,6 +5,7 @@
  <style>
         .address {
             color: #707070;
+            font-size:14px;
         }
 
             .address h3 {
@@ -28,7 +29,7 @@
                 }
 
                     .address .addressList .items .item {
-                        margin: .2rem 0;
+                        margin: .6rem 0;
                         margin-left: 1rem;
                     }
 
@@ -227,6 +228,7 @@
             modelCard.fadeToggle();
             cover.fadeToggle();
         }
+
         $("#ContentPlaceHolder1_ContentPlaceHolder1_chooseProvince").change(function () {
             let value = $('#ContentPlaceHolder1_ContentPlaceHolder1_chooseProvince').distpicker()[0].value;
             $("#ContentPlaceHolder1_ContentPlaceHolder1_province").val(value);

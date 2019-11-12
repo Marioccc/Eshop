@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Data.SqlClient;
 using Eshop.App_Code;
 
 namespace Eshop.Home
@@ -13,14 +14,26 @@ namespace Eshop.Home
     {
         private static  handlerLayer handler = new handlerLayer();
 
-        private DataSet contactData = handler.getContactData("21");
+        private void contact_Init()
+        {
+            SqlDataReader result = handler.getContactData("21");
+            contactID.Text = result["ContactId"].ToString();
+            address_name.InnerText = result["Addressee"].ToString();
+            address_phone.InnerText = result["phone"].ToString();
+
+            address_province.InnerText = result["province"].ToString();
+            address_city.InnerText = result["city"].ToString();
+            address_area.InnerText = result["area"].ToString();
+            address_detail.InnerText = result["detailAddress"].ToString();
+
+            address_zip.InnerText = result["zip"].ToString();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                contactList.DataSource = contactData;
+                contact_Init();
                 cartList.DataSource = handler.getPayCart("21");
-                contactList.DataBind();
                 cartList.DataBind();
             }
         }
@@ -38,7 +51,7 @@ namespace Eshop.Home
             Order order = new Order();
             order.date  = DateTime.Now;
             order.memberID = "21";
-            order.contactID = contactData.Tables[0].Rows[0][0].ToString();
+            order.contactID = contactID.Text;
             order.totalPrice = float.Parse(Total_price.Value);
             Random random = new Random();
             order.orderID = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + DateTime.Now.Millisecond.ToString() + "21" + random.Next(0, 9);
@@ -49,6 +62,30 @@ namespace Eshop.Home
             else
             {
                 Response.Write("<script>alert('出现异常！');</script>");
+            }
+        }
+
+        protected void modify_Info_Click(object sender, EventArgs e)
+        {
+            Contact contact = new Contact();
+            contact.name = name.Value;
+            contact.memberID = "21";
+            string address = province.Value + city.Value + district.Value;
+            contact.province = province.Value;
+            contact.city = city.Value;
+            contact.area = district.Value;
+            contact.detailAddress = addressDetail.Value;
+            contact.address = address;
+            contact.phone = phone.Value;
+            contact.zip = zip.Value;
+
+            if (!handler.updateDefaultAddress(contact, contactID.Text))
+            {
+                Response.Write("<script>alert('修改失败！');</script>");
+            }
+            else
+            {
+                Response.Redirect("check_out.aspx");
             }
         }
     }

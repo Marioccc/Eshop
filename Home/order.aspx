@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .order-section {
-            font-size: 12px;
+            font-size: 14px;
         }
 
             .order-section .list-head {
@@ -46,6 +46,78 @@
         .close:hover{
             cursor:pointer;
         }
+        .evaluation:hover{
+            cursor:pointer;
+        }
+        .evaluation-normal{
+            opacity:0.3;
+        }
+        .evaluation-opacity{
+            opacity:1;
+        }
+        .evaluation-normal:hover{
+            cursor:pointer;
+        }
+        .margin-left-1{
+            margin-left:1rem;
+        }
+
+         /*修改卡片样式*/
+                .background-cover {
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #000;
+            opacity: 0.5;
+        }
+
+        .address-card {
+            position: fixed;
+            z-index: 20;
+            width: 20%;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%,-50%);
+            background-color: white;
+        }
+        .address-card .container{
+            display:flex;
+            flex-direction:column;
+        }
+            .address-card .model-head {
+                padding: 1rem;
+            }
+
+            .address-card .model-row {
+                margin: 1rem 0;
+            }
+
+            .address-card .select-row {
+                margin: 0.5rem 0;
+            }
+
+            .address-card .model-bottom {
+                padding: 1rem;
+            }
+
+            .address-card .btn {
+                width: 100%;
+            }
+
+            .address-card .close:hover {
+                cursor: pointer;
+            }
+
+            .address-card .detail-address {
+                resize: none;
+            }
+
+        .disapper {
+            display: none;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -77,10 +149,10 @@
                                 <div class="col-md-2">
                                     <span><%# Eval("OrderDate","{0:d}") %></span>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     订单号: <asp:Label Text='<%#Eval("OrderId") %>' runat="server" ID="orderID" />
                                 </div>
-                                <div class="col-md-1 offset-md-6 text-align-center">
+                                <div class="col-md-1 offset-md-5 text-align-center">
                                     <!--
                                     <img src="./images/delete.svg" class="close" alt="">
                                     -->
@@ -94,7 +166,7 @@
                                             <div class="row">
                                         <div class="col-md-8 text-left commodity">
                                             <img class="float-left" src='<%#Eval("Picture") %>' width="80" height="80">
-                                            <span><%#Eval("Name") %></span>
+                                            <span class="margin-left-1"><%#Eval("Name") %></span>
                                         </div>
                                         <div class="col-md-2 text-align-center">
                                             ￥<span><%#Eval("totalPrice") %></span>
@@ -113,7 +185,7 @@
                                         </div>
                                         <div class="col-md-5"><%#Eval("Status").ToString() == "0"?"待支付":"已支付" %></div>
                                         <div class="col-md-5">
-                                            <span>评论</span>
+                                            <span class="evaluation">评论</span>
                                         </div>
                                     </div>
                                 </div>
@@ -127,4 +199,74 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     
+
+    <div class="background-cover disapper"></div>
+    <div class="address-card disapper card-add">
+        <div class="container">
+            <div class="row bg-light model-head">
+                <div class="col-md-8">
+                    <h5>商品评价</h5>
+                </div>
+                <div class="col-md-4">
+                    <span class="close model-close">&times;</span>
+                </div>
+            </div>
+            <div class="row model-row">
+                <div class="col-md-4 evaluation-normal">
+                    <asp:HiddenField ID="goodEvaluation" runat="server" Value="0" />
+                    <img src="./images/good.svg" alt="good "  width="50"/>
+                    完美
+                </div>
+                <div class="col-md-4 evaluation-normal">
+                    <asp:HiddenField ID="mediumEvaluation" runat="server" Value="0" />
+                    <img src="./images/medium.svg" alt="medium " width="50" />
+                    一般
+                </div>
+                <div class="col-md-4 evaluation-normal">
+                    <asp:HiddenField ID="badEvaluation" runat="server" Value="0" />
+                    <img src="./images/bad.svg" alt="bad " width="50" />
+                    差
+                </div>
+            </div>
+            <div class="row model-row">
+                <div class="col-md-12">
+                    <textarea class="form-control detail-address" id="feeling" rows="3" placeholder="说下你的使用感受吧" runat="server"></textarea>
+                </div>
+            </div>
+            <div class="bg-light row model-bottom">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-danger model-close">取消</button>
+                </div>
+                <div class="col-md-6">
+                    <asp:Button Text="提交" runat="server" class="btn btn-info" ID="modifyInfo"  OnClick="modifyInfo_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        $(".evaluation-normal").click(function () {
+            $(".evaluation-normal").removeClass("evaluation-opacity");
+            $(this).addClass("evaluation-opacity");
+
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_goodEvaluation").val("0");
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_mediumEvaluation").val("0");
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_badEvaluation").val("0");
+            this.childNodes[1].value = "1";
+        })
+
+        let modelCard = $(".card-add");
+        let cover = $(".background-cover");
+        $(".evaluation").click(function () {    
+            cover.fadeToggle();
+            modelCard.fadeToggle();
+        })
+        $(".model-close").click(function () {
+            closeModel();
+        })
+        function closeModel() {
+            modelCard.fadeToggle();
+            cover.fadeToggle();
+        }
+    </script>
 </asp:Content>

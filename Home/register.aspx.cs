@@ -21,7 +21,7 @@ namespace Eshop.frontend
             Member member = new Member();
             member.account = account.Text;
             member.pwd = pwd.Text;
-            member.phone = int.Parse(phone.Text);
+            member.phone = phone.Text;
             member.email = email.Text;
             member.registerDate = DateTime.Now;
 

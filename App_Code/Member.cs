@@ -12,7 +12,7 @@ namespace Eshop.App_Code
         public string pwd;
         public string sex;
         public int age;
-        public int phone;
+        public string phone;
         public string address;
         public string email;
         public DateTime registerDate;

@@ -14,5 +14,9 @@ namespace Eshop.App_Code
         public string phone;
         public string zip;
         public int defaultAddress = 0;
+        public string province;
+        public string city;
+        public string area;
+
     }
 }

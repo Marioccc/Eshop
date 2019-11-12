@@ -9,7 +9,7 @@
     <title>Eshop购物商城</title>
     <link rel="icon" href="./images/logo.ico">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link href="./css/Site1.css?v=3" rel="stylesheet" />
+    <link href="./css/Site1.css?v=4" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -43,7 +43,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container clearPadding">
                 <a class="navbar-brand" href="index.aspx">
-                    <img src="./images/logo.jpg" width="30" height="30" alt="">
+                    <img src="./images/logo.jpg" width="35" height="35" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
                     </ul>
                     <div class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" aria-label="Search">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">搜索</button>
+                        <button class="btn btn-primary my-2 my-sm-0" type="submit">搜索</button>
                     </div>
 
                 </div>

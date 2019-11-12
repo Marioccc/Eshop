@@ -38,6 +38,9 @@ namespace Eshop.Home
             contact.name = name.Value;
             contact.memberID = "21";
             string address = province.Value + city.Value + district.Value;
+            contact.province = province.Value;
+            contact.city = city.Value;
+            contact.area = district.Value;
             contact.detailAddress = addressDetail.Value;
             contact.address = address;
             contact.phone = phone.Value;
