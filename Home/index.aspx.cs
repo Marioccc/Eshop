@@ -16,7 +16,8 @@ namespace Eshop.frontend
             //interview.Text = "当前在线人数：" + Application["count"].ToString();
             if(!IsPostBack)
             {
-                
+                hot_list.DataSource = handler.getHotCommodityData();
+                hot_list.DataBind();
             }
             discountList.DataSource = handler.getRandomCommodity();
             discountList.DataBind();

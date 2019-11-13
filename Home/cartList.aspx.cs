@@ -15,7 +15,7 @@ namespace Eshop.Home
 
         private void cartInit()
         {
-            cartLists.DataSource = handler.getCart("21");
+            cartLists.DataSource = handler.getCart(Session["userID"].ToString());
             cartLists.DataBind();
         }
         protected void Page_Load(object sender, EventArgs e)

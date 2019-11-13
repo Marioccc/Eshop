@@ -13,7 +13,7 @@ namespace Eshop.Home
         handlerLayer handler = new handlerLayer();
         private void order_List_Init()
         {
-            orderRepeater.DataSource = handler.getOrderData();
+            orderRepeater.DataSource = handler.getOrderData(Session["userID"].ToString());
             orderRepeater.DataBind();
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -59,7 +59,20 @@ namespace Eshop.Home
             {
                 level = 1;
             }
-            //if(!handler.orderEvaluation(level,feeling.Value,))
+            if (!handler.orderEvaluation(level, feeling.Value, orderID.Text, commodityID.Text, Session["userID"].ToString()))
+            {
+                Response.Write("<script>alert('评论失败！');</script>");
+            }
+            else
+            {
+                order_List_Init();
+            }
+        }
+
+        protected void evaluationBtn_Command(object sender, CommandEventArgs e)
+        {
+            commodityID.Text = e.CommandArgument.ToString();
+            orderID.Text = e.CommandName.ToString();
         }
     }
 }

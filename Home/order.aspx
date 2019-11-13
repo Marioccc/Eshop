@@ -128,16 +128,16 @@
             <div class="row list-head">
                 <div class="col-md-7">
                     <div class="row">
-                        <div class="col-md-8">宝贝</div>
+                        <div class="col-md-6">宝贝</div>
                         <div class="col-md-2">价格</div>
                         <div class="col-md-2">数量</div>
+                        <div class="col-md-2">操作</div>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="row">
-                        <div class="col-md-2">实付款</div>
-                        <div class="col-md-5">交易状态</div>
-                        <div class="col-md-5">操作</div>
+                        <div class="col-md-6">实付款</div>
+                        <div class="col-md-6">交易状态</div>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
                                     <asp:Repeater ID="commodityRepeater" runat="server">
                                         <ItemTemplate>
                                             <div class="row">
-                                        <div class="col-md-8 text-left commodity">
+                                        <div class="col-md-6 text-left commodity d-flex">
                                             <img class="float-left" src='<%#Eval("Picture") %>' width="80" height="80">
                                             <span class="margin-left-1"><%#Eval("Name") %></span>
                                         </div>
@@ -174,19 +174,19 @@
                                         <div class="col-md-2 text-align-center">
                                             <span><%#Eval("amount") %></span>
                                         </div>
+                                         <div class="col-md-2 text-align-center">
+                                             <asp:LinkButton Text="评论"    Visible=' <%#Eval("evaluationID").ToString()=="-1"? true:false %>'  runat="server" class="evaluation" ID="evaluationBtn"  OnCommand="evaluationBtn_Command" CommandArgument='<%#Eval("Id") %>' CommandName='<%#Eval("orderID") %>' OnClientClick=" closeModel()" />
+                                        </div>
                                     </div>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </div>
                                 <div class="col-md-5 text-align-center">
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-6">
                                             ￥<span class="font-bold"><%#Eval("Total") %></span>
                                         </div>
-                                        <div class="col-md-5"><%#Eval("Status").ToString() == "0"?"待支付":"已支付" %></div>
-                                        <div class="col-md-5">
-                                            <span class="evaluation">评论</span>
-                                        </div>
+                                        <div class="col-md-6"><%#Eval("Status").ToString() == "0"?"待支付":"已支付" %></div>
                                     </div>
                                 </div>
                             </div>
@@ -206,6 +206,8 @@
             <div class="row bg-light model-head">
                 <div class="col-md-8">
                     <h5>商品评价</h5>
+                    <asp:Label Text="" runat="server" ID="commodityID" Visible="false" />
+                    <asp:Label Text="" runat="server" ID="orderID" Visible="false"  />
                 </div>
                 <div class="col-md-4">
                     <span class="close model-close">&times;</span>
@@ -257,10 +259,13 @@
 
         let modelCard = $(".card-add");
         let cover = $(".background-cover");
+
+        /*
         $(".evaluation").click(function () {    
             cover.fadeToggle();
             modelCard.fadeToggle();
         })
+        */
         $(".model-close").click(function () {
             closeModel();
         })

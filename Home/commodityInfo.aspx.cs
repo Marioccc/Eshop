@@ -22,17 +22,23 @@ namespace Eshop.Home
 
         protected void addToCart_Click(object sender, EventArgs e)
         {
-            float per_Price = float.Parse( handler.getCommodityPrice(Request.QueryString["id"].ToString()) );
-            float totalPrice = per_Price * int.Parse(nums.Text);
-            if(handler.addToCart("21",Request.QueryString["id"],  nums.Text, totalPrice.ToString()) )
+            if(Session["userID"]==null)
             {
-                Response.Write("<script>alert('添加成功！');</script>");
+                Response.Write("<script>alert('请登录！');</script>");
             }
             else
             {
-                Response.Write("<script>alert('添加失败！');</script>");
-            }
-            
+                float per_Price = float.Parse(handler.getCommodityPrice(Request.QueryString["id"].ToString()));
+                float totalPrice = per_Price * int.Parse(nums.Text);
+                if (handler.addToCart(Session["userID"].ToString(), Request.QueryString["id"], nums.Text, totalPrice.ToString()))
+                {
+                    Response.Write("<script>alert('添加成功！');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('添加失败！');</script>");
+                }
+            }  
         }
 
         protected void plus_Click(object sender, EventArgs e)

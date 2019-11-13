@@ -27,7 +27,7 @@ namespace Eshop.frontend
             {
                 if (handler.login(name.Text, pwd.Text))
                 {
-                    Session["userID"] = name.Text;
+                    Session["userID"] = handler.getUserID(name.Text);
                     Response.Redirect("index.aspx");
                 }
                 else

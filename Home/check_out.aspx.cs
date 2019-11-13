@@ -16,7 +16,7 @@ namespace Eshop.Home
 
         private void contact_Init()
         {
-            SqlDataReader result = handler.getContactData("21");
+            SqlDataReader result = handler.getContactData(Session["userID"].ToString());
             contactID.Text = result["ContactId"].ToString();
             address_name.InnerText = result["Addressee"].ToString();
             address_phone.InnerText = result["phone"].ToString();
@@ -33,14 +33,14 @@ namespace Eshop.Home
             if(!IsPostBack)
             {
                 contact_Init();
-                cartList.DataSource = handler.getPayCart("21");
+                cartList.DataSource = handler.getPayCart(Session["userID"].ToString());
                 cartList.DataBind();
             }
         }
 
         protected void backToCart_Click(object sender, EventArgs e)
         {
-            if(handler.cartRoallBack("21"))
+            if(handler.cartRoallBack(Session["userID"].ToString()))
                 Response.Redirect("cartList.aspx");
             else
                 Response.Write("<script>alert('异常情况发生！');</script>");
@@ -50,11 +50,11 @@ namespace Eshop.Home
         {
             Order order = new Order();
             order.date  = DateTime.Now;
-            order.memberID = "21";
+            order.memberID = Session["userID"].ToString();
             order.contactID = contactID.Text;
             order.totalPrice = float.Parse(Total_price.Value);
             Random random = new Random();
-            order.orderID = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + DateTime.Now.Millisecond.ToString() + "21" + random.Next(0, 9);
+            order.orderID = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + DateTime.Now.Millisecond.ToString() + Session["userID"].ToString() + random.Next(0, 9);
             if (handler.commitOrder(order))
             {
                 Response.Write("<script> alert('下单成功！');  location='index.aspx';</script>");
@@ -69,7 +69,7 @@ namespace Eshop.Home
         {
             Contact contact = new Contact();
             contact.name = name.Value;
-            contact.memberID = "21";
+            contact.memberID = Session["userID"].ToString();
             string address = province.Value + city.Value + district.Value;
             contact.province = province.Value;
             contact.city = city.Value;

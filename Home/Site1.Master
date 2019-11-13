@@ -9,7 +9,7 @@
     <title>Eshop购物商城</title>
     <link rel="icon" href="./images/logo.ico">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link href="./css/Site1.css?v=4" rel="stylesheet" />
+    <link href="./css/Site1.css?v=5" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -52,18 +52,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">所有商品</a>
+                            <a class="nav-link" href="commodityList.aspx">所有商品</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">今日特价</a>
+                            <a class="nav-link" href="commodityList.aspx">今日特价</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">热销商品</a>
+                            <a class="nav-link" href="commodityList.aspx">热销商品</a>
                         </li>
                     </ul>
                     <div class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" aria-label="Search">
-                        <button class="btn btn-primary my-2 my-sm-0" type="submit">搜索</button>
+                        <input class="form-control mr-sm-2" type="search"  runat="server" id="search_Input" >
+                        <asp:Button Text="搜索" runat="server" class="btn btn-primary my-2 my-sm-0" ID="searchBtn" OnClick="searchBtn_Click" />
                     </div>
 
                 </div>

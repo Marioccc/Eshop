@@ -86,8 +86,11 @@
     <Content Include="Home\cartList.aspx" />
     <Content Include="Home\check_out.aspx" />
     <Content Include="Home\commodityInfo.aspx" />
+    <Content Include="Home\commodityList.aspx" />
     <Content Include="Home\css\Site1.css" />
     <Content Include="Home\images\add.svg" />
+    <Content Include="Home\images\commodityImgs\a09.jpg" />
+    <Content Include="Home\images\commodityImgs\xyj.jpg" />
     <Content Include="Home\images\delete.svg" />
     <Content Include="Home\js\distpicker.js" />
     <Content Include="Home\evaluation.aspx" />
@@ -114,7 +117,6 @@
     <Content Include="Home\index.aspx" />
     <Content Include="Home\js\jquery-3.4.1.min.js" />
     <Content Include="Home\login.aspx" />
-    <Content Include="Home\my_evaluation.aspx" />
     <Content Include="Home\order.aspx" />
     <Content Include="Home\register.aspx" />
     <Content Include="Home\Validate.aspx" />
@@ -164,6 +166,13 @@
     <Compile Include="Home\commodityInfo.aspx.designer.cs">
       <DependentUpon>commodityInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Home\commodityList.aspx.cs">
+      <DependentUpon>commodityList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\commodityList.aspx.designer.cs">
+      <DependentUpon>commodityList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home\evaluation.aspx.cs">
       <DependentUpon>evaluation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -191,13 +200,6 @@
     </Compile>
     <Compile Include="Home\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Home\my_evaluation.aspx.cs">
-      <DependentUpon>my_evaluation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Home\my_evaluation.aspx.designer.cs">
-      <DependentUpon>my_evaluation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home\order.aspx.cs">
       <DependentUpon>order.aspx</DependentUpon>

@@ -47,13 +47,14 @@
             .address .zip {
                 margin-right: 5.3rem;
             }
-            .address .addItem:hover,
+            .address .modifyItem:hover,
             .address .deleteItem:hover {
                 cursor: pointer;
+                color:#e74c3c;
             }
 
-            .address .addItem {
-                margin-right: 0.4rem;
+            .address .modifyItem {
+                margin-right: 0.5rem;
             }
 
             .address .add-address {
@@ -140,7 +141,7 @@
                                 <span class="zip"><%#Eval("zip") %></span>
                             </div>
                             <div class="item float-right" style="margin-right: 1rem;">
-                                <span class="price addItem">修改</span>
+                                <asp:LinkButton Text="修改" runat="server" ID="modify_address" OnCommand="modify_address_Command" class="modifyItem price" CommandArgument='<%#Eval("ContactId") %>' />
                                 <asp:LinkButton Text="删除" runat="server" ID="delete" OnCommand="delete_Command" class="price deleteItem" CommandArgument='<%#Eval("ContactId") %>' />
                             </div>
                         </div>
@@ -158,7 +159,8 @@
         <div class="container">
             <div class="row bg-light model-head">
                 <div class="col-md-8">
-                    <h5>添加收货地址</h5>
+                    <h5 runat="server" id="title">添加收货地址</h5>
+                    <asp:Label Text="" runat="server" ID="contactID" Visible="false" />
                 </div>
                 <div class="col-md-4">
                     <span class="close model-close">&times;</span>
@@ -207,7 +209,8 @@
                     <button type="button" class="btn btn-danger model-close">取消</button>
                 </div>
                 <div class="col-md-6">
-                    <asp:Button Text="保存" runat="server" class="btn btn-info" ID="saveInfo" OnClick="saveInfo_Click" />
+                    <asp:Button Text="保存" runat="server" class="btn btn-info saveInfo" ID="saveInfo" OnClick="saveInfo_Click" />
+                    <asp:Button Text="保存" runat="server" class="btn btn-info save_modifyInfo disapper" ID="save_modifyInfo" OnClick="save_modifyInfo_Click" />
                 </div>
             </div>
         </div>
@@ -218,6 +221,18 @@
         let modelCard = $(".card-add");
         let cover = $(".background-cover");
         $(".add-address").click(function () {
+
+            $(".saveInfo").addClass("disapper");
+            $(".save_modifyInfo").addClass("disapper");
+            $(".saveInfo").removeClass("disapper");
+
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_title").text("添加收货地址");
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_name").val("");
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_phone").val("");
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_addressDetail").val("");
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_zip").val("");
+            $("#ContentPlaceHolder1_ContentPlaceHolder1_customCheck1").prop("checked", false);
+
             cover.fadeToggle();
             modelCard.fadeToggle();
         })
@@ -227,6 +242,10 @@
         function closeModel() {
             modelCard.fadeToggle();
             cover.fadeToggle();
+
+            $(".saveInfo").addClass("disapper");
+            $(".save_modifyInfo").addClass("disapper");
+            $(".save_modifyInfo").removeClass("disapper");
         }
 
         $("#ContentPlaceHolder1_ContentPlaceHolder1_chooseProvince").change(function () {

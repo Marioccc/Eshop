@@ -14,11 +14,10 @@ namespace Eshop.frontend
         {
             if (Session["userID"] != null)
             {
-                login.InnerText = "(" + Session["userID"].ToString() + ")个人中心";
+                login.InnerText = "(" +handler.getUserName(Session["userID"].ToString())  + ")个人中心";
                 login.HRef = "basicInfo.aspx";
                 register.Visible = false;
-                string userID = handler.getUserID(Session["userID"].ToString());
-                cart.InnerText = string.Format("({0})购物车", handler.getCartNum(userID));
+                cart.InnerText = string.Format("({0})购物车", handler.getCartNum(Session["userID"].ToString()));
             }
             else
             {
@@ -30,6 +29,11 @@ namespace Eshop.frontend
         {
             Session["userID"] = null;
             Response.Redirect("index.aspx");
+        }
+
+        protected void searchBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("commodityList.aspx?key=" + search_Input.Value);
         }
     }
 }

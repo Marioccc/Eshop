@@ -11,7 +11,7 @@ namespace Eshop.Home
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["userID"] == null) Response.Redirect("index.aspx");
         }
     }
 }

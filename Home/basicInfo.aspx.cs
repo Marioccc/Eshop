@@ -14,7 +14,7 @@ namespace Eshop.Home
 
         private void info_Init()
         {
-            Member member = handler.getMemberData("21");
+            Member member = handler.getMemberData(Session["userID"].ToString());
             user_name.InnerText = member.account;
             user_sex.InnerText = member.sex;
             user_phone.InnerText = member.phone.ToString();
@@ -33,7 +33,7 @@ namespace Eshop.Home
 
         protected void modifyInfo_Click(object sender, EventArgs e)
         {
-            if (handler.checkName(modify_name.Value,"21"))
+            if (handler.checkName(modify_name.Value, Session["userID"].ToString()))
             {
                 Member member = new Member();
                 member.account = modify_name.Value;
@@ -48,7 +48,7 @@ namespace Eshop.Home
                 }
                 member.email = modify_email.Value;
                 member.pwd = modify_pwd.Value;
-                if (handler.updateMemberData(member, "21"))
+                if (handler.updateMemberData(member, Session["userID"].ToString()))
                 {
                     Response.Redirect("basicInfo.aspx");
                 }
@@ -84,7 +84,7 @@ namespace Eshop.Home
             {
                 string filepath = fileUpLoadPic.PostedFile.FileName;
                 string filename = filepath.Substring(filepath.LastIndexOf("\\") + 1);//第一个\转义字符
-                if (handler.updateUserImg("21", imgFileName))
+                if (handler.updateUserImg(Session["userID"].ToString(), imgFileName))
                 {
                     string fileEx = filepath.Substring(filepath.LastIndexOf(".") + 1);//从.开始截至最后得到图片格式.jpg
                     if (fileEx == "jpg" || fileEx == "bmp" || fileEx == "gif" || fileEx == "png" || fileEx == "jpeg")

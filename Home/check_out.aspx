@@ -211,7 +211,7 @@
                 </div>
             </div>
             <div class="row padding-top-bottom line">
-                <div class="col-md-3 offset-md-9">
+                <div class="col-md-4 offset-md-8">
                     <asp:Button Text="返回购物车" runat="server" class="btn btn-light" ID="backToCart" OnClick="backToCart_Click" />
                     <asp:Button Text="立即下单" runat="server" class="btn btn-danger" ID="commit" OnClick="commit_Click" />
                 </div>

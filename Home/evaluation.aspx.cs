@@ -14,7 +14,7 @@ namespace Eshop.Home
 
         private void evaluationList_Init()
         {
-            evaluationList.DataSource = handler.getEvaluation("21");
+            evaluationList.DataSource = handler.getEvaluation(Session["userID"].ToString());
             evaluationList.DataBind();
         }
         protected void Page_Load(object sender, EventArgs e)

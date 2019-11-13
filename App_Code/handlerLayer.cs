@@ -79,6 +79,12 @@ namespace Eshop.App_Code
             return data.getData(cmd);
         }
 
+        public DataSet getCommodity()
+        {
+            string cmd = "select * from commodityInfo";
+            return data.getData(cmd);
+        }
+
         public bool addToCart(string userID , string commodityID , string num,string price)
         {
             string queryCommodityCmd = string.Format("select * from cart where MemberId={0} and MerId={1}", userID, commodityID);
@@ -193,7 +199,7 @@ namespace Eshop.App_Code
 
         public bool commitOrder(Order order)
         {
-            string insertOrder = string.Format("insert into orders(OrderId,MemberId,ContactId,Total,Status,OrderDate,evaluationID) values('{0}',{1},{2},{3},0,'{4}',-1)",
+            string insertOrder = string.Format("insert into orders(OrderId,MemberId,ContactId,Total,Status,OrderDate) values('{0}',{1},{2},{3},0,'{4}')",
                 order.orderID, order.memberID, order.contactID, order.totalPrice, order.date);
             if (data.updateData(insertOrder))
             {
@@ -206,7 +212,7 @@ namespace Eshop.App_Code
                     string amount = reader["Amount"].ToString();
                     string totalPrice = reader["totalPrice"].ToString();
 
-                    string insertOrderDetail = string.Format("insert into orderDetail (orderID,commodityID,amount,totalPrice) values ('{0}',{1},{2},{3})", order.orderID, commodityID, amount, totalPrice);
+                    string insertOrderDetail = string.Format("insert into orderDetail (orderID,commodityID,amount,totalPrice,evaluationID) values ('{0}',{1},{2},{3},-1)", order.orderID, commodityID, amount, totalPrice);
                     if (!data.updateData(insertOrderDetail)) return false;
 
                     string deleteCart = string.Format("delete from cart where CartId={0}", cartID);
@@ -217,15 +223,15 @@ namespace Eshop.App_Code
             return true;
         }
 
-        public DataSet getOrderData()
+        public DataSet getOrderData(string id)
         {
-            string cmd = "select * from orders";
+            string cmd = string.Format("select * from orders where MemberId={0}",id);
             return data.getData(cmd);
         }
 
         public DataSet getOrderDetailData(string orderID)
         {
-            string cmd = string.Format("select * from orderDetail inner join commodityInfo on orderDetail.commodityID = commodityInfo.Id where orderID='{0}'", orderID);
+            string cmd = string.Format("select * from orderDetail inner join commodityInfo on orderDetail.commodityID = commodityInfo.Id  where orderID='{0}'", orderID);
             return data.getData(cmd);
         }
 
@@ -291,15 +297,68 @@ namespace Eshop.App_Code
                 commodityMerchant = commodityData["GoodFacturer"].ToString();
                 commodityPrice = commodityData["Price"].ToString();
             }
-            string cmd = string.Format("insert into evaluation (MerId,message,merchant,time,commodityInfo,commodityPrice,gradeLevel,orderID) values({0},'{1}','{2}','{3}','{4}',{5},{6},'{7}')",
-               memberID,evaluation,commodityMerchant,DateTime.Now.ToString(), commodityInfo,commodityPrice,level,orderID);
-            return data.updateData(cmd);
+            string evaluationGrade = "images/good.svg";
+            if (level == 1) evaluationGrade = "images/bad.svg";
+            else if (level == 2) evaluationGrade = "images/medium.svg";
+
+            string cmd = string.Format("insert into evaluation (MerId,message,merchant,time,commodityInfo,commodityPrice,gradeLevel,orderID,grade) values({0},'{1}','{2}','{3}','{4}',{5},{6},'{7}','{8}');   select  top(1)@@identity from evaluation;  ",
+               memberID,evaluation,commodityMerchant,DateTime.Now.ToString(), commodityInfo,commodityPrice,level,orderID,evaluationGrade);
+            object resultID = data.queryData(cmd);
+            string updateDetailEvaluationID = string.Format("update orderDetail set evaluationID={0} where orderID='{1}' and commodityID={2}", resultID, orderID, commodityID);
+            if (!data.updateData(updateDetailEvaluationID)) return false;
+            return true;
         }
 
         public bool deleteEvaluation(string id)
         {
             string cmd = string.Format("delete from evaluation where MessageId={0}", id);
             return data.updateData(cmd);
+        }
+        public Contact getContact(string id)
+        {
+            string cmd = string.Format("select * from contact where ContactId={0}", id);
+            SqlDataReader result = data.getReader(cmd);
+            Contact contact = new Contact();
+            if (result.Read())
+            {
+                contact.name = result["Addressee"].ToString();
+                contact.phone = result["phone"].ToString();
+                contact.detailAddress = result["detailAddress"].ToString();
+                contact.zip = result["zip"].ToString();
+                contact.defaultAddress = int.Parse(result["DefaultValue"].ToString());
+            }
+            return contact;
+        }
+
+        public bool modifyContact(Contact contact,string id)
+        {
+            if (contact.defaultAddress == 1)
+            {
+                string clearDefaultCmd = string.Format("update contact set DefaultValue=0 where MemberId={0}", contact.memberID);
+                if (!data.updateData(clearDefaultCmd)) return false;
+            }
+            string cmd = string.Format("update contact set Addressee='{0}',address='{1}',phone='{2}',zip='{3}',DefaultValue={4},detailAddress='{5}',province='{6}',city='{7}',area='{8}' where ContactId={9}",
+                contact.name, contact.address, contact.phone, contact.zip, contact.defaultAddress, contact.detailAddress, contact.province, contact.city, contact.area, id);
+            return data.updateData(cmd);
+        }
+
+        public DataSet getSearchData(string key)
+        {
+            string cmd = string.Format("select * from commodityInfo where Name like '%{0}%' ", key);
+            return data.getData(cmd);
+        }
+
+        public DataSet getHotCommodityData()
+        {
+            string cmd = "SELECT TOP 10 * FROM  commodityInfo ORDER BY NEWID()";
+            return data.getData(cmd);
+        }
+
+        public string getUserName(string id)
+        {
+            string cmd = string.Format("select Name from member where Id={0}", id);
+            object result = data.queryData(cmd);
+            return result.ToString();
         }
     }
 }

@@ -42,6 +42,10 @@ a {
     justify-content: flex-end;
 }
 
+.card{
+    height:420px;
+}
+
 .price {
     color: #e74c3c;
 }

@@ -24,6 +24,24 @@ namespace Eshop.Home
         protected global::System.Web.UI.WebControls.Repeater addressLists;
 
         /// <summary>
+        /// title 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl title;
+
+        /// <summary>
+        /// contactID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label contactID;
+
+        /// <summary>
         /// name 控件。
         /// </summary>
         /// <remarks>
@@ -130,5 +148,14 @@ namespace Eshop.Home
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button saveInfo;
+
+        /// <summary>
+        /// save_modifyInfo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button save_modifyInfo;
     }
 }
